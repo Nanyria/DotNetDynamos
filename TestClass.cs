@@ -9,5 +9,7 @@ namespace DotNetDynamos
     internal class TestClass
     {
         int hej = 5;
+        int hej3 = 5;
+        int hej2 = 5;
     }
 }
