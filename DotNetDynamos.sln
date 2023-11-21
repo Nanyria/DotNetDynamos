@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDynamos", "DotNetDynamos.csproj", "{5A4AB809-84BE-4E9F-A250-9585915D4107}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A4AB809-84BE-4E9F-A250-9585915D4107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A4AB809-84BE-4E9F-A250-9585915D4107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A4AB809-84BE-4E9F-A250-9585915D4107}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A4AB809-84BE-4E9F-A250-9585915D4107}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA6524BF-837D-408A-9D30-5286EC6C6406}
+	EndGlobalSection
+EndGlobal
