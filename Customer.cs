@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DotNetDynamos
 {
-    internal class TestClass
+    internal class Customer
     {
         int hej = 5;
         int hej3 = 5;

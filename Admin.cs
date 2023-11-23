@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DotNetDynamos
 {
-    internal class TestVincent
+    internal class Admin
     {
-        string Katt = "Voff";
+        public int hej;
     }
 }
