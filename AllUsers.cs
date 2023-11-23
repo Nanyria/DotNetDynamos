@@ -38,6 +38,18 @@ namespace DotNetDynamos
         {
             return input.Length >= 6 && input.Length <= 12;
         }
+
+        protected bool ContainsCapitolLetter(string input)
+        {
+            foreach (char character in input)
+            {
+                if (char.IsUpper(character))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     // Derived class implementing user registration
