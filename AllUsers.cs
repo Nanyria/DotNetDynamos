@@ -23,7 +23,21 @@ namespace DotNetDynamos
                 {
                     if(ContainsCapitolLetter(value))
                     {
-                        _password = value;
+                        if(ContainsDigit(value))
+                        {
+                           if(ContainsSymbol(value))
+                            {
+                                _password = value;
+                            }
+                           else
+                            {
+                                Console.WriteLine("Invalid password. Must contain one symbol.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid password. Must contain at least one digit");
+                        }
                     }
                     else
                     {
@@ -51,6 +65,31 @@ namespace DotNetDynamos
             foreach (char character in input)
             {
                 if (char.IsUpper(character))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        protected bool ContainsDigit(string input)
+        {
+            foreach (char character in input)
+            {
+                if (char.IsDigit(character))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        protected bool ContainsSymbol(string input)
+        {
+            foreach (char character in input)
+            {
+                if (!char.IsLetterOrDigit(character))
                 {
                     return true;
                 }
