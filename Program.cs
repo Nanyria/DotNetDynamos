@@ -4,8 +4,12 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            
+            // Create an instance of the derived class
+            AllUsers userRegistration = new ConsoleUserRegistration();
+
+            // Call the RegisterUser method
+            userRegistration.RegisterUser();
+
         }
     }
 }
