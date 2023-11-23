@@ -21,7 +21,14 @@ namespace DotNetDynamos
                 // Validate pin code when setting
                 if (IsBetweenAllowedChar(value))
                 {
-                    _password = value;
+                    if(ContainsCapitolLetter(value))
+                    {
+                        _password = value;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid password. Please use min. one upper-case letter.");
+                    }
                 }
                 else
                 {
