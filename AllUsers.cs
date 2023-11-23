@@ -7,25 +7,25 @@ using System.Threading.Tasks;
 namespace DotNetDynamos
 {
     // Abstract class for user registration
-    public abstract class UserRegistration
+    public abstract class AllUsers
     {
         // Properties for username and pin code
-        public string Username { get; set; }
-        private string _pinCode;
+        public string _username { get; set; }
+        private string _password;
 
-        public string PinCode
+        public string Password
         {
-            get => _pinCode;
+            get => _password;
             set
             {
                 // Validate pin code when setting
-                if (IsFourDigitPin(value))
+                if (IsBetweenAllowedChar(value))
                 {
-                    pinCode = value;
+                    _password = value;
                 }
                 else
                 {
-                    Console.WriteLine("Invalid pin code. Please enter a four-digit pin code.");
+                    Console.WriteLine("Invalid password. Please enter a password between 6-12 characters.");
                 }
             }
         }
@@ -34,14 +34,14 @@ namespace DotNetDynamos
         public abstract void RegisterUser();
 
         // Function to validate if the input is a four-digit pin
-        protected bool IsFourDigitPin(string input)
+        protected bool IsBetweenAllowedChar(string input)
         {
-            return input.Length == 4 && int.TryParse(input, out );
+            return input.Length >= 6 && input.Length <= 12;
         }
     }
 
     // Derived class implementing user registration
-    public class ConsoleUserRegistration : UserRegistration
+    public class ConsoleUserRegistration : AllUsers
     {
         public override void RegisterUser()
         {
@@ -49,26 +49,15 @@ namespace DotNetDynamos
 
             // Get username from the user
             Console.Write("Enter your username: ");
-            Username = Console.ReadLine();
+            _username = Console.ReadLine();
 
             // Get four-digit pin code from the user
             Console.Write("Enter a four-digit pin code: ");
-            PinCode = Console.ReadLine();
+            Password = Console.ReadLine();
 
             // Display user information
-            Console.WriteLine($"User registered!\nUsername: {Username}\nPin Code: {PinCode}");
+            Console.WriteLine($"User registered!\nUsername: {_username}\nPin Code: {Password}");
         }
     }
 
-    class Program
-    {
-        static void Main()
-        {
-            // Create an instance of the derived class
-            UserRegistration userRegistration = new ConsoleUserRegistration();
-
-            // Call the RegisterUser method
-            userRegistration.RegisterUser();
-        }
-    }
 }
