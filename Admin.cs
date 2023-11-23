@@ -8,6 +8,8 @@ namespace DotNetDynamos
 {
     internal class Admin : User
     {
-        public int hej;
+        public Admin(string username, string password): base(username, password)
+        {
+        }
     }
 }
