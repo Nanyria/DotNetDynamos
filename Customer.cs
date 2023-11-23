@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace DotNetDynamos
 {
-    internal class Customer
+    internal class Customer : User
     {
-        int hej = 5;
-        int hej3 = 5;
-        int hej2 = 5;
+       
     }
 }
