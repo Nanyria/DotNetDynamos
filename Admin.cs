@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DotNetDynamos
 {
-    internal class Admin
+    internal class Admin : User
     {
         public int hej;
     }
