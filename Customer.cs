@@ -10,6 +10,7 @@ namespace DotNetDynamos
     {
         public Customer(string username, string password) : base(username, password)
         { 
+
         }
     }
 }
