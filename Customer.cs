@@ -28,9 +28,7 @@ namespace DotNetDynamos
         {
             return email.Contains("@");
         }
-
         private DateTime _birthday;
-
         public string Birthday
         {
             get => _birthday.ToString();
@@ -46,30 +44,10 @@ namespace DotNetDynamos
                 }
             }
         }
-        //public DateTime Birthday
-        //{
-        //    get => _birthday;
-        //    set
-        //    {
-        //        if (IsValidDate(value))
-        //        {
-        //            _birthday = value;
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Invalid date format. Please enter a valid date.");
-        //        }
-        //    }
-        //}
-
-
         public int IDnumber { get; set; }
-
-
         public override void RegisterUser()
         {
             Console.WriteLine("Welcome to User Registration!");
-
             // Get username emila address
             Console.Write("Enter your email address: ");
             Email = Console.ReadLine();
