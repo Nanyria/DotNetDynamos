@@ -11,11 +11,7 @@ namespace DotNetDynamos
         
         List<User> users = new List<User>()         // Test 
         {
-            new Customer("Asuka", "1234"),
-            new Admin("Philip", "1234"),
-            new Customer("Stefan", "4567"),
-            new Customer("Nathalee", "3456"),
-            new Admin("Vincent", "2345"),
+          
         };
         
        public void Hej()

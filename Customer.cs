@@ -20,23 +20,68 @@ namespace DotNetDynamos
                 }
                 else
                 {
-                    Console.WriteLine("Invalid mail address.");
+                    Console.WriteLine("Invalid email format. Please enter a valid email address.");
                 }
-
             }
         }
-        protected bool IsValidEmail(string email)
+        protected static bool IsValidEmail(string email)
         {
-            
+            return email.Contains("@");
         }
 
-        public DateTime Birthday { get; set; }
-        public int Idnumber { get; set; }
+        private DateTime _birthday;
+
+        public string Birthday
+        {
+            get => _birthday.ToString();
+            set
+            {
+                if (DateTime.TryParse(value, out DateTime date))
+                {
+                    _birthday = date;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid date format. Please enter a valid date.");
+                }
+            }
+        }
+        //public DateTime Birthday
+        //{
+        //    get => _birthday;
+        //    set
+        //    {
+        //        if (IsValidDate(value))
+        //        {
+        //            _birthday = value;
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Invalid date format. Please enter a valid date.");
+        //        }
+        //    }
+        //}
+
+
+        public int IDnumber { get; set; }
+
 
         public override void RegisterUser()
         {
+            Console.WriteLine("Welcome to User Registration!");
 
+            // Get username emila address
+            Console.Write("Enter your email address: ");
+            Email = Console.ReadLine();
+            // Get birthday
+            Console.Write("Enter your birthday (YYYY-MM-DD):");
+            Birthday = Console.ReadLine();
+            // Get ID
+            Console.Write("Enter your ID-number: ");
+            IDnumber = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"Email: {_email}, Birthday: {Birthday},ID: {IDnumber} ");
         }
-
     }
 }
+
+
