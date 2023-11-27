@@ -32,5 +32,14 @@ namespace DotNetDynamos
             // Display user information
             Console.WriteLine($"User registered!\nUsername: {_username}\nFirst name: {_firstname}\nLast name: {_lastname}\nPassword: {Password}");
         }
+        public override void Login()
+        {
+
+        }
+
+        public override void Menu()
+        {
+
+        }
     }
 }
