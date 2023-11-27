@@ -28,18 +28,17 @@ namespace DotNetDynamos
         {
             return email.Contains("@");
         }
-       
 
         private DateTime _birthday;
-       
-        public DateTime Birthday
+
+        public string Birthday
         {
-            get => _birthday;
+            get => _birthday.ToString();
             set
             {
-                if (IsValidDay(value))
+                if (DateTime.TryParse(value, out DateTime date))
                 {
-                    _birthday = value;
+                    _birthday = date;
                 }
                 else
                 {
@@ -47,14 +46,24 @@ namespace DotNetDynamos
                 }
             }
         }
-       protected bool IsValidDay(DateTime day)
-       {
-            return true;
-     
-       }
+        //public DateTime Birthday
+        //{
+        //    get => _birthday;
+        //    set
+        //    {
+        //        if (IsValidDate(value))
+        //        {
+        //            _birthday = value;
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Invalid date format. Please enter a valid date.");
+        //        }
+        //    }
+        //}
 
 
-        public int Idnumber { get; set; }
+        public int IDnumber { get; set; }
 
 
         public override void RegisterUser()
@@ -66,34 +75,13 @@ namespace DotNetDynamos
             Email = Console.ReadLine();
             // Get birthday
             Console.Write("Enter your birthday (YYYY-MM-DD):");
-            if(DateTime.TryParse(Console.ReadLine(), out DateTime birthday))
-            {
-                Birthday = birthday;
-            }
-
-
-            //DateTime birthday;
-            //while (true)
-            //{
-            //    Console.Write("Enter your birthday (YYYY-MM-DD):");
-
-            //    if (DateTime.TryParse(Console.ReadLine(), out birthday))
-            //    {
-            //        break;
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Invalid date format. Please enter a valid date.");
-            //    }
-            //}
-
+            Birthday = Console.ReadLine();
+            // Get ID
             Console.Write("Enter your ID-number: ");
-                int userID = Convert.ToInt32(Console.ReadLine());
-
-                Console.WriteLine($"{_email}, {Birthday}, ");
-
-            }
-
+            IDnumber = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"Email: {_email}, Birthday: {Birthday},ID: {IDnumber} ");
         }
     }
+}
+
 
