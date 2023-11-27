@@ -10,9 +10,11 @@ namespace DotNetDynamos
     {
         // Properties for username password with conditions for password
         public string _username { get; set; }
+        public int _IDnumber { get;  set; }
         public string _firstname { get; set; }
         public string _lastname { get; set; }
         public bool _ifadmin;
+        
 
         private string _password;
 
@@ -104,6 +106,7 @@ namespace DotNetDynamos
 
         public abstract void Login();
         public abstract void Menu();
+        public abstract void UserList();
          
     }
 

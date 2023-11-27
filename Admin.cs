@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,13 @@ namespace DotNetDynamos
 {
     internal class Admin : AllUsers
     {
+        public static Dictionary<int, string> AdminUsers = new Dictionary<int, string>();
+        private static int nextId = 0001;
+
+
+        
+
+
 
         public override void RegisterUser()
         {
@@ -29,13 +37,26 @@ namespace DotNetDynamos
             Console.Write("Password must contain:\n6-12 characters\nAt least one capitol letter\nAt least one digit\nAt least one symbol\nEnter password: ");
             Password = Console.ReadLine();
 
+            _IDnumber = nextId++;
+            nextId++;
+
+            AdminUsers.Add(nextId, _username);
+
             // Display user information
-            Console.WriteLine($"User registered!\nUsername: {_username}\nFirst name: {_firstname}\nLast name: {_lastname}\nPassword: {Password}");
+            Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{_IDnumber}\nFirst name: {_firstname}\nLast name: {_lastname}\nPassword: {Password}");
         }
+        public override void UserList()
+        {
+            //Dictionary<int, Employee> FrArrtoDic = EMArray.ToDictionary(e => e.ID, e => e);
+            foreach (_username item in AdminUsers)
+            {
+
+            }
         public override void Login()
         {
 
         }
+
         public static Users Login()
         {
             Console.WriteLine("Välkommen till Awesome Bank!");
