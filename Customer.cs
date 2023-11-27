@@ -26,7 +26,7 @@ namespace DotNetDynamos
         }
         protected static bool IsValidEmail(string email)
         {
-            return email.Contains("@");
+            return email.Contains("@") && email.Contains(".");
         }
         private DateTime _birthday;
         public string Birthday
@@ -44,7 +44,7 @@ namespace DotNetDynamos
                 }
             }
         }
-        public int IDnumber { get; set; }
+        public int IDnumber { get; set; } // Ska vi tilldela 
         public override void RegisterUser()
         {
             Console.WriteLine("Welcome to User Registration!");
