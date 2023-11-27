@@ -45,6 +45,7 @@ namespace DotNetDynamos
             }
         }
         public int IDnumber { get; set; } // Ska vi tilldela 
+
         public override void RegisterUser()
         {
             Console.WriteLine("Welcome to User Registration!");
