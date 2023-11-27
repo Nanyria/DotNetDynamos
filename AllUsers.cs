@@ -12,7 +12,7 @@ namespace DotNetDynamos
         public string _username { get; set; }
         public string _firstname { get; set; }
         public string _lastname { get; set; }
-        public bool _ifadmin 
+        public bool _ifadmin;
 
         private string _password;
 
