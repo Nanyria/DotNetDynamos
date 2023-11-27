@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace DotNetDynamos
 {
-    // Abstract class for user registration
     public abstract class AllUsers
     {
-        // Properties for username and pin code
+        // Properties for username password with conditions for password
         public string _username { get; set; }
+        public string _firstname { get; set; }
+        public string _lastname { get; set; }
+        public bool _ifadmin 
+
         private string _password;
 
         public string Password
@@ -18,7 +21,7 @@ namespace DotNetDynamos
             get => _password;
             set
             {
-                // Validate pin code when setting
+                // Validate password, check if all conditions are filled.
                 if (IsBetweenAllowedChar(value))
                 {
                     if(ContainsCapitolLetter(value))
@@ -31,7 +34,7 @@ namespace DotNetDynamos
                             }
                            else
                             {
-                                Console.WriteLine("Invalid password. Must contain one symbol.");
+                                Console.WriteLine("Invalid password. Must contain at least one symbol.");
                             }
                         }
                         else
@@ -51,15 +54,13 @@ namespace DotNetDynamos
             }
         }
 
-        // Abstract method to be implemented by derived classes
-        public abstract void RegisterUser();
-
-        // Function to validate if the input is a four-digit pin
+        // Function to validate if the input is between 6-12 char.
         protected bool IsBetweenAllowedChar(string input)
         {
             return input.Length >= 6 && input.Length <= 12;
         }
 
+        // Function to validate if the input contains at least one capitol letter.
         protected bool ContainsCapitolLetter(string input)
         {
             foreach (char character in input)
@@ -72,6 +73,7 @@ namespace DotNetDynamos
             return false;
         }
 
+        // Function to validate if the input contains at least one digit.
         protected bool ContainsDigit(string input)
         {
             foreach (char character in input)
@@ -84,7 +86,7 @@ namespace DotNetDynamos
             return false;
         }
 
-
+        // Function to validate if the input contains at least one symbol.
         protected bool ContainsSymbol(string input)
         {
             foreach (char character in input)
@@ -96,26 +98,16 @@ namespace DotNetDynamos
             }
             return false;
         }
+
+        // Abstract method to be implemented by derived classes.
+        public abstract void RegisterUser();
+
+        public abstract void Login();
+        public abstract void Menu();
+         
     }
 
-    // Derived class implementing user registration
-    public class ConsoleUserRegistration : AllUsers
-    {
-        public override void RegisterUser()
-        {
-            Console.WriteLine("Welcome to User Registration!");
 
-            // Get username from the user
-            Console.Write("Enter your username: ");
-            _username = Console.ReadLine();
 
-            // Get four-digit pin code from the user
-            Console.Write("Enter a four-digit pin code: ");
-            Password = Console.ReadLine();
-
-            // Display user information
-            Console.WriteLine($"User registered!\nUsername: {_username}\nPin Code: {Password}");
-        }
-    }
 
 }
