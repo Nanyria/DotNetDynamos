@@ -9,7 +9,7 @@ namespace DotNetDynamos
 {
     internal class Admin : AllUsers
     {
-        public static Dictionary<int, string> AdminUsers = new Dictionary<int, string>();
+        public static Dictionary<string, string> AdminUsers = new Dictionary<string, string>();
         private static int nextAdID = 1001;
 
 
@@ -40,7 +40,7 @@ namespace DotNetDynamos
             _IDnumber = nextAdID++;
             nextAdID++;
 
-            AdminUsers.Add(nextAdID, _username);
+            AdminUsers.Add(Password, _username);
 
             // Display user information
             Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{_IDnumber}\nFirst name: {_firstname}\nLast name: {_lastname}\nPassword: {Password}");
@@ -51,76 +51,72 @@ namespace DotNetDynamos
             customer.RegisterUser();
 
         }
-        public override void UserList()
+        public override void UserList() //Ändra om så den läser ut id
         {
-            foreach (KeyValuePair<int, string> item in AdminUsers)
+            foreach (KeyValuePair<string, string> item in AdminUsers)
             {
-                Console.WriteLine("ID: {0}, \nUsername: {1}", item.Key, item.Value);
+                Console.WriteLine("ID: {0}, \nUsername: {1}", item., item.Value);
             }
         }
         public override void Login()
         {
+            Console.WriteLine("Välkommen till Awesome Bank!");
+            Admin LoggedIn = null;
+            while (LoggedIn == null)
+            {
+                Console.WriteLine("Användarnamn:");
+                string enteredName = Console.ReadLine();
+                Admin foundUser = AdminUsers.FirstOrDefault(u => u.string == enteredName); //Söker efter användaren i listan AllUsers. 
+                if (foundUser != null)
+                {
+                    if (foundUser.count < 3) //Om användaren inte redan använt sina tre inloggningsförsök så - 
+                    {
+                        Console.WriteLine("Pinkod:");
+                        string enteredPin = Console.ReadLine();
 
+                        if (int.TryParse(enteredPin, out int pincode) && foundUser.pinCode == pincode) //Om pinkoden är i siffror och koden stämmer överens med koden som är inmatad för användaren
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Välkommen, " + foundUser.userName + "!");
+                            foundUser.count = 0; //Antal försök att logga in resettas.
+                            Meny(foundUser);
+                            LoggedIn = foundUser;
+                        }
+                        else
+                        {
+                            foundUser.count++;
+                            Console.Clear();
+                            Console.WriteLine("Du har skrivit fel pinkod. Du har {0} försök kvar.", (3 - foundUser.count));
+                            if (foundUser.count >= 3)
+                            {
+                                Console.WriteLine("Du har använt dina tre försök men inte skrivit in rätt pinkod. Kontakta din bank för att låsa upp ditt konto igen.");
+                                Login();
+                                return null;
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Du har använt dina tre försök men inte skrivit in rätt pinkod. Kontakta din bank för att låsa upp ditt konto igen.");
+                        Login();
+                        return null;
+
+                    }
+
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Användaren hittades inte.");
+                }
+            }
+            return LoggedIn;
         }
 
-        //public static Users Login();
-        //{
-            //Console.WriteLine("Välkommen till Awesome Bank!");
-            //Users LoggedIn = null;
-            //while (LoggedIn == null)
-            //{
-            //    Console.WriteLine("Användarnamn:");
-            //    string enteredName = Console.ReadLine();
-            //    Users foundUser = AllUsers.FirstOrDefault(u => u.userName == enteredName); //Söker efter användaren i listan AllUsers. 
-            //    if (foundUser != null)
-            //    {
-            //        if (foundUser.count < 3) //Om användaren inte redan använt sina tre inloggningsförsök så - 
-            //        {
-            //            Console.WriteLine("Pinkod:");
-            //            string enteredPin = Console.ReadLine();
-
-            //            if (int.TryParse(enteredPin, out int pincode) && foundUser.pinCode == pincode) //Om pinkoden är i siffror och koden stämmer överens med koden som är inmatad för användaren
-            //            {
-            //                Console.Clear();
-            //                Console.WriteLine("Välkommen, " + foundUser.userName + "!");
-            //                foundUser.count = 0; //Antal försök att logga in resettas.
-            //                Meny(foundUser);
-            //                LoggedIn = foundUser;
-            //            }
-            //            else
-            //            {
-            //                foundUser.count++;
-            //                Console.Clear();
-            //                Console.WriteLine("Du har skrivit fel pinkod. Du har {0} försök kvar.", (3 - foundUser.count));
-            //                if (foundUser.count >= 3)
-            //                {
-            //                    Console.WriteLine("Du har använt dina tre försök men inte skrivit in rätt pinkod. Kontakta din bank för att låsa upp ditt konto igen.");
-            //                    Login();
-            //                    return null;
-
-            //                }
-            //            }
-            //        }
-            //        else
-            //        {
-            //            Console.WriteLine("Du har använt dina tre försök men inte skrivit in rätt pinkod. Kontakta din bank för att låsa upp ditt konto igen.");
-            //            Login();
-            //            return null;
-
-            //        }
-
-            //    }
-            //    else
-            //    {
-            //        Console.Clear();
-            //        Console.WriteLine("Användaren hittades inte.");
-            //    }
-            //}
-            //return LoggedIn;
 
 
-
-        public override void Menu()
+public override void Menu()
         {
 
         }
