@@ -21,6 +21,7 @@ namespace DotNetDynamos
                 else
                 {
                     Console.WriteLine("Invalid email format. Please enter a valid email address.");
+                    Email = GetValidString();
                 }
             }
         }
@@ -41,8 +42,22 @@ namespace DotNetDynamos
                 else
                 {
                     Console.WriteLine("Invalid date format. Please enter a valid date.");
+                    Birthday = GetValidString();
                 }
             }
+        }
+        public string GetValidString()
+        {
+            string s = string.Empty;
+            while (true)
+            {
+                s = Console.ReadLine();
+                if (IsValidEmail(s))
+                {
+                    break;
+                }
+            }
+            return s;
         }
         public int IDnumber { get; set; } // Ska vi tilldela 
 
@@ -59,6 +74,20 @@ namespace DotNetDynamos
             Console.Write("Enter your ID-number: ");
             IDnumber = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine($"Email: {_email}, Birthday: {Birthday},ID: {IDnumber} ");
+        }
+        
+
+        public override void Login()
+        {
+
+        }
+        public override void Menu()
+        {
+
+        }
+        public override void UserList()
+        {
+
         }
     }
 }
