@@ -87,5 +87,9 @@ namespace DotNetDynamos
         {
 
         }
+        public void LogOut()
+        {
+
+        }
     }
 }
