@@ -12,11 +12,6 @@ namespace DotNetDynamos
         public static Dictionary<string, string> AdminUsers = new Dictionary<string, string>();
         private static int nextAdID = 1001;
 
-
-        
-
-
-
         public override void RegisterUser()
         {
             Console.WriteLine("Welcome to User Registration!");
@@ -58,6 +53,27 @@ namespace DotNetDynamos
                 Console.WriteLine("ID: {0}, \nUsername: {1}", item., item.Value);
             }
         }
+        public string FindUser(string enteredName)
+        {
+            
+            string foundUser = null;
+            if (AdminUsers.ContainsValue(enteredName))
+            {
+                foundUser = enteredName;
+                return foundUser;
+            }
+            else if (!AdminUsers.ContainsValue(enteredName))
+            {
+                return null;
+                //throw new Exception("Username could not be found");
+
+            }
+            else
+            {
+                return AdminUsers[enteredName]; //??
+            }
+
+        }
         public override void Login() //Kan vi söka efter id ist för username? Men användaren skrive rin username.
         {
             Console.WriteLine("Välkommen till Awesome Bank!");
@@ -66,7 +82,8 @@ namespace DotNetDynamos
             {
                 Console.WriteLine("Användarnamn:");
                 string enteredName = Console.ReadLine();
-                Admin foundUser = AdminUsers.FirstOrDefault(u => u.string == enteredName); //Söker efter användaren i listan AllUsers. 
+                string foundUser = FindUser(enteredName);
+
                 if (foundUser != null)
                 {
                     if (foundUser.count < 3) //Om användaren inte redan använt sina tre inloggningsförsök så - 
