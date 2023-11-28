@@ -109,20 +109,50 @@ namespace DotNetDynamos
 
         public override void Menu()
         {
+            bool go = true;
+            while (go)
+            {
+                Console.WriteLine("Customer Meny");
+            Console.WriteLine("View account and balance");
+            Console.WriteLine("2. Transfer money between accounts");
+            Console.WriteLine("3. Transfer money to other Customer");
+            Console.WriteLine("4. Open new account");
+            Console.WriteLine("5. Another currency");
+            Console.WriteLine("6. Account history");
+            Console.WriteLine("7. Logg out");
 
-            //Ändra till switch, skapa bool så att man kan komma tillbaka till menyn.
-            Console.WriteLine("Customer Meny");
-            string menu1 = "1. View account and balance";
-            string menu2 = "2. Transfer money between accounts";
-            string menu3 = "3. Transfer money to other Customer";
-            string menu4 = "4. Open new account";
-            string menu5 = "5. Another currency";
-            string menu6 = "6. Account history";
+            Console.Write("Choose meny: ");
+            int choice = Convert.ToInt32(Console.ReadLine());
 
+                switch (choice)
+                {
+                    case 1:
+                        ShowBalance();
+                        break;
+                    case 2:
+                        Transfer();
+                        break;
+                    case 3:
+                        TransferToOthers();
+                        break;
+                    case 4:
+                        NewAccount();
+                        break;
+                    case 5:
+                        Currency();
+                        break;
+                    case 6:
+                        AccountHistory();
+                        break;
+                    case 7:
+                        LogOut();
+                        break;
 
-            Console.WriteLine("\n\t" + menu1 + "\n\t" + menu2 + "\n\t" + menu3 + "\n\t" + menu4 + "\n\t" + menu5 + "\n\t" + menu6 + "\n\t");
-
-
+                    default:
+                        Console.WriteLine("Wrong input, try again.");
+                        break;
+                }
+            }
         }
 
         static void ShowBalance()
@@ -154,7 +184,14 @@ namespace DotNetDynamos
         {
 
         }
+
+        public void LogOut()
+        {
+
+        }
+    
         public override void UserList()     
+
         {
             Console.WriteLine("Customer Users:");
             foreach (KeyValuePair<int, string> customerUser in CustomerUsers)
