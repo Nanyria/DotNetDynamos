@@ -110,7 +110,6 @@ namespace DotNetDynamos
                                 Console.WriteLine("Du har använt dina tre försök men inte skrivit in rätt pinkod. Kontakta din bank för att låsa upp ditt konto igen.");
                                 Login();
                                 return null;
-
                             }
                             Console.Clear();
                         Console.WriteLine("Welcome, " + enteredName + "!");

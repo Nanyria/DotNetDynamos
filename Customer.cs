@@ -10,8 +10,8 @@ namespace DotNetDynamos
 {
     internal class Customer : AllUsers
     {
-        public static Dictionary<int, string> CustomerUsers = new Dictionary<int, string>();
-        private static int nextCuID = 1000;
+        public static Dictionary<int, string> CustomerUsers = new Dictionary<int, string>(); // _IDnumber, _username
+        private static int nextCuID = 1000;     // kolla med den
         private string _email;
         private DateTime _birthday;
         public string Email
@@ -83,7 +83,7 @@ namespace DotNetDynamos
 
             _IDnumber = nextCuID++;
             
-            CustomerUsers.Add(nextCuID, _username);
+            CustomerUsers.Add(_IDnumber, _username);
 
             // Create a new bank account for the user
             Account newAccount = new Account
@@ -184,19 +184,20 @@ namespace DotNetDynamos
         {
 
         }
+
         public void LogOut()
         {
 
         }
     
-    public override void UserList()
+        public override void UserList()     
+
         {
             Console.WriteLine("Customer Users:");
-            foreach (KeyValuePair<int, string> adminUser in CustomerUsers)
+            foreach (KeyValuePair<int, string> customerUser in CustomerUsers)
             {
-                Console.WriteLine($"ID: {adminUser.Key}, Username: {adminUser.Value}");
+                Console.WriteLine($"ID: {customerUser.Key}, Username: {customerUser.Value}");
             }
-
         }
     }
 }
