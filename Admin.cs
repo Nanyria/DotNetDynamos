@@ -11,6 +11,7 @@ namespace DotNetDynamos
     {
         public static Dictionary<int, string> AdminUsers = new Dictionary<int, string>();
         private static int nextAdID = 1001;
+        private static int maxLoginAttempts = 3;
 
         public override void RegisterUser()
         {
@@ -49,7 +50,7 @@ namespace DotNetDynamos
 
         public override void UserList()
         {
-            Console.WriteLine("Admin Users:");
+            Console.WriteLine("Customer Users:");
             foreach (KeyValuePair<int, string> adminUser in AdminUsers)
             {
                 Console.WriteLine($"ID: {adminUser.Key}, Username: {adminUser.Value}");
@@ -59,9 +60,9 @@ namespace DotNetDynamos
 
         public override void Login()
         {
-            Admin loggedIn = null;
-            int count = 0;
-            while (loggedIn == null)
+            Admin loggedInAdmin = null;
+            int loginAttempts = 0;
+            while (loggedInAdmin == null)
             {
                 Console.WriteLine("Username:");
                 string enteredName = Console.ReadLine();
@@ -75,50 +76,20 @@ namespace DotNetDynamos
                     // Find the key (ID) associated with the entered username
                     int userID = AdminUsers.FirstOrDefault(x => x.Value == enteredName).Key;
 
-                    // Validate the password for the found user ID
-                        if (userID != null)
-                        {
-                            if (count < 3) //Om användaren inte redan använt sina tre inloggningsförsök så - 
-                            {
-                                Console.WriteLine("Pinkod:");
-                                string enteredPin = Console.ReadLine();
-
-                                if (int.TryParse(enteredPin, out int pincode) && userID.pinCode == pincode) //Om pinkoden är i siffror och koden stämmer överens med koden som är inmatad för användaren
-                                {
-                                    Console.Clear();
-                                    Console.WriteLine("Välkommen, " + enteredName + "!");
-                                    count = 0; //Antal försök att logga in resettas.
-                                    Meny(userID);
-                                    LoggedIn = userID;
-                                }
-                                else
-                                {
-                                    count++;
-                                    Console.Clear();
-                                    Console.WriteLine("Du har skrivit fel pinkod. Du har {0} försök kvar.", (3 - count));
-                                    if (count >= 3)
-                                    {
-                                        Console.WriteLine("Du har använt dina tre försök men inte skrivit in rätt pinkod. Kontakta din bank för att låsa upp ditt konto igen.");
-                                        Login();
-                                        return null;
-
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Du har använt dina tre försök men inte skrivit in rätt pinkod. Kontakta din bank för att låsa upp ditt konto igen.");
-                                Login();
-                                return null;
-                            }
-                            Console.Clear();
+                    // Perform password validation here; replace the placeholder with your logic
+                    if (ValidateAdminPassword(userID, enteredPassword)) // Example password validation
+                    {
+                        Console.Clear();
                         Console.WriteLine("Welcome, " + enteredName + "!");
                         // Further actions after successful login can be added here
-                        loggedIn = // Assign the logged-in user information;
-            }
+                        loggedInAdmin = new Admin();
+                        loggedInAdmin._IDnumber = userID;
+                        loggedInAdmin._username = enteredName;
+                    }
                     else
                     {
-                        Console.WriteLine("Incorrect password.");
+                        loginAttempts++;
+                        Console.WriteLine($"Incorrect password. You have {maxLoginAttempts - loginAttempts} attempts remaining.");
                     }
                 }
                 else
@@ -126,119 +97,46 @@ namespace DotNetDynamos
                     Console.WriteLine("Username not found.");
                 }
             }
-            return loggedIn;
+            if (loggedInAdmin == null)
+            {
+                Console.WriteLine("Maximum login attempts reached. Please contact support.");
+            }
+
         }
+
 
         // Method to validate admin password
         private bool ValidateAdminPassword(int userID, string enteredPassword)
         {
-            int count = 0;
-            if (foundUser != null)
+            // Fetch the stored password associated with the userID from your data source (e.g., AdminUsers dictionary)
+            string storedPassword = string.Empty;
+
+            // Check if the userID exists in the dictionary
+            if (AdminUsers.ContainsKey(userID))
             {
-                if (foundUser.count < 3) //Om användaren inte redan använt sina tre inloggningsförsök så - 
-                {
-                    Console.WriteLine("Pinkod:");
-                    string enteredPin = Console.ReadLine();
-
-                    if (int.TryParse(enteredPin, out int pincode) && foundUser.pinCode == pincode) //Om pinkoden är i siffror och koden stämmer överens med koden som är inmatad för användaren
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Välkommen, " + foundUser.userName + "!");
-                        foundUser.count = 0; //Antal försök att logga in resettas.
-                        Meny(foundUser);
-                        LoggedIn = foundUser;
-                    }
-                    else
-                    {
-                        foundUser.count++;
-                        Console.Clear();
-                        Console.WriteLine("Du har skrivit fel pinkod. Du har {0} försök kvar.", (3 - foundUser.count));
-                        if (foundUser.count >= 3)
-                        {
-                            Console.WriteLine("Du har använt dina tre försök men inte skrivit in rätt pinkod. Kontakta din bank för att låsa upp ditt konto igen.");
-                            Login();
-                            return null;
-
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Du har använt dina tre försök men inte skrivit in rätt pinkod. Kontakta din bank för att låsa upp ditt konto igen.");
-                    Login();
-                    return null;
-
-                }
-                // Logic to validate password for the given user ID
-                // You'll need to implement your own password validation logic here
-                // For example, fetching the password associated with the user ID from a secure data source and comparing it with the entered password
-                // Return true if the passwords match, else return false
+                // Retrieve the stored password corresponding to the userID
+                storedPassword = AdminUsers[userID];
             }
-        public override void Login() //Kan vi söka efter id ist för username? Men användaren skrive rin username.
-        {
-            Console.WriteLine("Välkommen till Awesome Bank!");
-            Admin LoggedIn = null;
-            while (LoggedIn == null)
+            else
             {
-                Console.WriteLine("Användarnamn:");
-                string enteredName = Console.ReadLine();
-                string foundUser = FindUser(enteredName);
-
-                if (foundUser != null)
-                {
-                    if (foundUser.count < 3) //Om användaren inte redan använt sina tre inloggningsförsök så - 
-                    {
-                        Console.WriteLine("Pinkod:");
-                        string enteredPin = Console.ReadLine();
-
-                        if (int.TryParse(enteredPin, out int pincode) && foundUser.pinCode == pincode) //Om pinkoden är i siffror och koden stämmer överens med koden som är inmatad för användaren
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Välkommen, " + foundUser.userName + "!");
-                            foundUser.count = 0; //Antal försök att logga in resettas.
-                            Meny(foundUser);
-                            LoggedIn = foundUser;
-                        }
-                        else
-                        {
-                            foundUser.count++;
-                            Console.Clear();
-                            Console.WriteLine("Du har skrivit fel pinkod. Du har {0} försök kvar.", (3 - foundUser.count));
-                            if (foundUser.count >= 3)
-                            {
-                                Console.WriteLine("Du har använt dina tre försök men inte skrivit in rätt pinkod. Kontakta din bank för att låsa upp ditt konto igen.");
-                                Login();
-                                return null;
-
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Du har använt dina tre försök men inte skrivit in rätt pinkod. Kontakta din bank för att låsa upp ditt konto igen.");
-                        Login();
-                        return null;
-
-                    }
-
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Användaren hittades inte.");
-                }
+                // UserID not found, handle the case (throw an exception, return false, etc.)
+                // For example:
+                throw new ArgumentException("User ID not found.");
             }
-            return LoggedIn;
+
+            // Compare the stored password with the entered password
+            bool isValidPassword = (enteredPassword == storedPassword);
+
+            return isValidPassword;
         }
+    
 
-
-
-public override void Menu()
+        public override void Menu()
         {
             bool go = true;
             while(go)
             {
-                Console.WriteLine("Admin Menu");
+                Console.WriteLine("Customer Menu");
                 Console.WriteLine("1. Create new user account.");
                 Console.WriteLine("2. Delete user account.");
                 Console.WriteLine("3. See User accounts.");
