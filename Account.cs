@@ -10,7 +10,7 @@ namespace DotNetDynamos
     {
 
         // Dictionary to hold user accounts (mapping user ID to bank accounts)
-        private static Dictionary<int, List<Account>> userAccounts = new Dictionary<int, List<Account>>();
+        private static Dictionary<int, List<Account>> userAccounts = new Dictionary<int, List<Account>>();  // userID, List<Account>
         public int AccountNumber {  get; set; }
         public decimal Balance { get; set; }
 
@@ -28,7 +28,7 @@ namespace DotNetDynamos
         }
 
         // Method to display user bank accounts
-        public void DisplayUserAccounts(int userID)
+        public void DisplayUserAccounts(int userID)  // Lägg till funktion för användare att döpa(namnge) account
         {
             if (userAccounts.ContainsKey(userID))
             {
