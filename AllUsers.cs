@@ -9,6 +9,7 @@ namespace DotNetDynamos
     public abstract class AllUsers
     {
         // Properties for username password with conditions for password
+        //Fixa så det inte kan vara null
         public string _username { get; set; }
         public int _IDnumber { get;  set; }
         public string _firstname { get; set; }
