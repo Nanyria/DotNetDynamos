@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DotNetDynamos
 {
-    internal class Customer : AllUsers
+    internal class Admin : AllUsers
     {
         public static Dictionary<int, string> AdminUsers = new Dictionary<int, string>();
         private static int nextAdID = 1001;
@@ -60,7 +60,7 @@ namespace DotNetDynamos
 
         public override void Login()
         {
-            Customer loggedInAdmin = null;
+            Admin loggedInAdmin = null;
             int loginAttempts = 0;
             while (loggedInAdmin == null)
             {
@@ -82,7 +82,7 @@ namespace DotNetDynamos
                         Console.Clear();
                         Console.WriteLine("Welcome, " + enteredName + "!");
                         // Further actions after successful login can be added here
-                        loggedInAdmin = new Customer();
+                        loggedInAdmin = new Admin();
                         loggedInAdmin._IDnumber = userID;
                         loggedInAdmin._username = enteredName;
                     }
