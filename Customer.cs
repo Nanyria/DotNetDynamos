@@ -53,6 +53,8 @@ namespace DotNetDynamos
         public override void RegisterUser()
         {
 
+            //Lägg till ett acc för nyreg kund
+
             Console.WriteLine("Welcome to User Registration!");
 
             // Get username from the user
@@ -150,6 +152,7 @@ namespace DotNetDynamos
             {
                 Console.WriteLine("ID: {0}, \nUsername: {1}", item.Key, item.Value);
             }
+            foreach ()
 
         }
     }
