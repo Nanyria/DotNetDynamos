@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using static DotNetDynamos.Account;
 
 namespace DotNetDynamos
 {
@@ -83,17 +85,23 @@ namespace DotNetDynamos
             
             CustomerUsers.Add(nextCuID, _username);
 
+            // Create a new bank account for the user
+            Account newAccount = new Account
+            {
+                AccountNumber = Account.GenereateAccountNumber(), // Generate a unique account number
+                Balance = 0 // Initial balance can be set as needed
+            };
+
+            // Assuming you have the user's unique ID (newUserID)
+            Account.AddBankAccount(_IDnumber, newAccount); // Add the bank account to the user
+
             // Display user information
             Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{nextCuID}\nFirst name: {_firstname}\nLast name: {_lastname}\nEmail: {_email}\nBirthday: {Birthday}\nPassword: {Password}");
 
-            //Console.WriteLine("Welcome to User Registration!");
-            //// Get username emila address
-
-            //// Get ID
-            //Console.Write("Enter your ID-number: ");
-            //IDnumber = Convert.ToInt32(Console.ReadLine());
+            
 
         }
+
         public override void Login()
         {
            
