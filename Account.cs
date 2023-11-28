@@ -8,32 +8,19 @@ namespace DotNetDynamos
 {
     internal class Account
     {
-        public static Dictionary<int, string> CustomerAcc = new Dictionary<int, string>();
-        public string AccountHolder {  get; set; }
-        public decimal Balance { get; set; }
-        public Account(string accountholder, decimal balance)
-        {
-            AccountHolder = accountholder;
-            Balance = balance;
-        }
-
-
-        public class BankAccount
-        {
-            public int AccountNumber { get; set; }
-            public decimal Balance { get; set; }
-            // You can add more properties like account type, transaction history, etc., as needed
-        }
-
         // Dictionary to hold user accounts (mapping user ID to bank accounts)
-        private Dictionary<int, List<BankAccount>> userAccounts = new Dictionary<int, List<BankAccount>>();
+        private static Dictionary<int, List<Account>> userAccounts = new Dictionary<int, List<Account>>();
+        public int AccountNumber {  get; set; }
+        public decimal Balance { get; set; }
+
+
 
         // Method to add a bank account for a customer
-        public void AddBankAccount(int userID, BankAccount newAccount)
+        public static void AddBankAccount(int userID, Account newAccount)
         {
             if (!userAccounts.ContainsKey(userID))
             {
-                userAccounts[userID] = new List<BankAccount>();
+                userAccounts[userID] = new List<Account>();
             }
 
             userAccounts[userID].Add(newAccount);
@@ -55,7 +42,11 @@ namespace DotNetDynamos
                 Console.WriteLine("User has no bank accounts.");
             }
         }
+        public static int GenereateAccountNumber()
+        {
+            //Accnumber = customernumber+1000?
+        }
 
-        // Other methods and properties...
+
     }
 }
