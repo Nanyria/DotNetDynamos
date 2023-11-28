@@ -38,7 +38,7 @@ namespace DotNetDynamos
             Password = Console.ReadLine();
 
             _IDnumber = nextAdID++;
-            nextAdID++;
+
 
             AdminUsers.Add(Password, _username);
 
@@ -58,7 +58,7 @@ namespace DotNetDynamos
                 Console.WriteLine("ID: {0}, \nUsername: {1}", item., item.Value);
             }
         }
-        public override void Login()
+        public override void Login() //Kan vi söka efter id ist för username? Men användaren skrive rin username.
         {
             Console.WriteLine("Välkommen till Awesome Bank!");
             Admin LoggedIn = null;

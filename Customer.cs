@@ -24,7 +24,6 @@ namespace DotNetDynamos
                 else
                 {
                     Console.WriteLine("Invalid email format. Please enter a valid email address.");
-                    Email = GetValidString();
                 }
             }
         }
@@ -46,23 +45,8 @@ namespace DotNetDynamos
                 else
                 {
                     Console.WriteLine("Invalid date format. Please enter a valid date.");
-                    Birthday = GetValidString();
                 }
             }
-        }
-
-        public string GetValidString()
-        {
-            string s = string.Empty;
-            while (true)
-            {
-                s = Console.ReadLine();
-                if (IsValidEmail(s))
-                {
-                    break;
-                }
-            }
-            return s;
         }
 
         //Check to see if we should register users only in Admin or if users should be able to register themselves
@@ -162,24 +146,10 @@ namespace DotNetDynamos
         }
         public override void UserList()
         {
-            foreach (KeyValuePair<int, string> item in CustomerUsers)
+            foreach (KeyValuePair<int, string> item in CustomerUsers) //inte klar
             {
                 Console.WriteLine("ID: {0}, \nUsername: {1}", item.Key, item.Value);
             }
-
-        }
-        
-
-        public override void Login()
-        {
-
-        }
-        public override void Menu()
-        {
-
-        }
-        public override void UserList()
-        {
 
         }
     }
