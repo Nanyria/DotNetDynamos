@@ -56,27 +56,6 @@ namespace DotNetDynamos
             }
         }
 
-        public string FindUser(string enteredName)
-        {
-            
-            string foundUser = null;
-            if (AdminUsers.ContainsValue(enteredName))
-            {
-                foundUser = enteredName;
-                return foundUser;
-            }
-            else if (!AdminUsers.ContainsValue(enteredName))
-            {
-                return null;
-                //throw new Exception("Username could not be found");
-
-            }
-            else
-            {
-                return AdminUsers[enteredName]; //??
-            }
-
-        }
 
         public override void Login()
         {

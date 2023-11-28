@@ -8,6 +8,7 @@ namespace DotNetDynamos
 {
     internal class Account
     {
+
         // Dictionary to hold user accounts (mapping user ID to bank accounts)
         private static Dictionary<int, List<Account>> userAccounts = new Dictionary<int, List<Account>>();
         public int AccountNumber {  get; set; }
@@ -42,9 +43,25 @@ namespace DotNetDynamos
                 Console.WriteLine("User has no bank accounts.");
             }
         }
-        public static int GenereateAccountNumber()
+        public static int GenerateAccountNumber(int userID)
         {
-            //Accnumber = customernumber+1000?
+            Random random = new Random();
+            int randomPart = random.Next(1000, 9999); // Generate a random 4-digit number
+
+            // Combine the user ID with the random number to create a unique account number
+            string accountNumberStr = userID.ToString() + randomPart.ToString();
+
+            // Convert the combined string to an integer account number
+            int accountNumber;
+            if (int.TryParse(accountNumberStr, out accountNumber))
+            {
+                return accountNumber;
+            }
+            else
+            {
+                // Handle parsing failure or other error scenarios
+                throw new InvalidOperationException("Failed to generate account number.");
+            }
         }
 
 
