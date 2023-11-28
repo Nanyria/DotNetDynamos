@@ -23,10 +23,10 @@ namespace DotNetDynamos
             if (!int.TryParse(Console.ReadLine(), out int choice))
             {
                 Console.WriteLine("Invalid number");
+                return -1;
             }
             return choice;
         }
-
         public void Meny()
         {
             int choice = GetMenyChoice();
