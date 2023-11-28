@@ -88,7 +88,7 @@ namespace DotNetDynamos
             // Create a new bank account for the user
             Account newAccount = new Account
             {
-                AccountNumber = Account.GenereateAccountNumber(), // Generate a unique account number
+                AccountNumber = Account.GenerateAccountNumber(_IDnumber),// Generate a unique account number
                 Balance = 0 // Initial balance can be set as needed
             };
 
@@ -156,11 +156,11 @@ namespace DotNetDynamos
         }
         public override void UserList()
         {
-            foreach (KeyValuePair<int, string> item in CustomerUsers) //inte klar
+            Console.WriteLine("Customer Users:");
+            foreach (KeyValuePair<int, string> adminUser in CustomerUsers)
             {
-                Console.WriteLine("ID: {0}, \nUsername: {1}", item.Key, item.Value);
+                Console.WriteLine($"ID: {adminUser.Key}, Username: {adminUser.Value}");
             }
-            foreach ()
 
         }
     }
