@@ -9,8 +9,8 @@ namespace DotNetDynamos
 {
     internal class Admin : AllUsers
     {
-        public static Dictionary<int, string> AdminUsers = new Dictionary<int, string>();
-        private static int nextId = 0001;
+        public static Dictionary<string, string> AdminUsers = new Dictionary<string, string>();
+        private static int nextAdID = 1001;
 
 
         
@@ -37,35 +37,36 @@ namespace DotNetDynamos
             Console.Write("Password must contain:\n6-12 characters\nAt least one capitol letter\nAt least one digit\nAt least one symbol\nEnter password: ");
             Password = Console.ReadLine();
 
-            _IDnumber = nextId++;
-            nextId++;
+            _IDnumber = nextAdID++;
 
-            AdminUsers.Add(nextId, _username);
+
+            AdminUsers.Add(Password, _username);
 
             // Display user information
             Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{_IDnumber}\nFirst name: {_firstname}\nLast name: {_lastname}\nPassword: {Password}");
         }
-        public override void UserList()
+        public static void RegisterCustomer()
         {
-            //Dictionary<int, Employee> FrArrtoDic = EMArray.ToDictionary(e => e.ID, e => e);
-            foreach (_username item in AdminUsers)
-            {
-
-            }
-        public override void Login()
-        {
+            Customer customer = new Customer();
+            customer.RegisterUser();
 
         }
-
-        public static Users Login()
+        public override void UserList() //Ändra om så den läser ut id
+        {
+            foreach (KeyValuePair<string, string> item in AdminUsers)
+            {
+                Console.WriteLine("ID: {0}, \nUsername: {1}", item., item.Value);
+            }
+        }
+        public override void Login() //Kan vi söka efter id ist för username? Men användaren skrive rin username.
         {
             Console.WriteLine("Välkommen till Awesome Bank!");
-            Users LoggedIn = null;
+            Admin LoggedIn = null;
             while (LoggedIn == null)
             {
                 Console.WriteLine("Användarnamn:");
                 string enteredName = Console.ReadLine();
-                Users foundUser = AllUsers.FirstOrDefault(u => u.userName == enteredName); //Söker efter användaren i listan AllUsers. 
+                Admin foundUser = AdminUsers.FirstOrDefault(u => u.string == enteredName); //Söker efter användaren i listan AllUsers. 
                 if (foundUser != null)
                 {
                     if (foundUser.count < 3) //Om användaren inte redan använt sina tre inloggningsförsök så - 
@@ -111,10 +112,11 @@ namespace DotNetDynamos
                 }
             }
             return LoggedIn;
+        }
 
 
 
-        public override void Menu()
+public override void Menu()
         {
 
         }
