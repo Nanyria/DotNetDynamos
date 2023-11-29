@@ -51,6 +51,10 @@ namespace DotNetDynamos
                 }
             }
         }
+        public static void AddUser(int userId, string password)
+        {
+            CustomerUsers.Add(userId, password);
+        }
 
         //Check to see if we should register users only in Admin or if users should be able to register themselves
         public override void RegisterUser()
