@@ -12,7 +12,6 @@ namespace DotNetDynamos
         public static Dictionary<int, string> AdminUsers = new Dictionary<int, string>();
         private static int nextAdID = 1001;
         private static int maxLoginAttempts = 3;
-        private bool isLoggedIn = false;
 
 
         public static void AddUser(int userId, string password)
@@ -159,21 +158,29 @@ namespace DotNetDynamos
         //    }
 
         //}
+        
 
-    public bool LogOut()
+    public void LogOut()
     {
-        if (isLoggedIn)
-        {
-            Console.WriteLine("Logging out...");
-            isLoggedIn = false;
-            return true; // Allow the program to continue
+            Console.WriteLine("1. Log Out");
+            Console.WriteLine("2. Exit");
+            Console.Write("Enter your choice: ");
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    Login(); // Log Out
+                    break;
+                case 2:
+                    Environment.Exit(0); // Exit the program
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Try again."); // Stay in the loop
+                    break;
+            }
         }
-        else
-        {
-            Console.WriteLine("No user logged in.");
-            return true; // Allow the program to continue
-        }
-    }
 
         // Method to validate admin password
 
@@ -207,7 +214,7 @@ namespace DotNetDynamos
             bool go = true;
             while(go)
             {
-                Console.WriteLine("Customer Menu");
+                Console.WriteLine("Admin Menu");
                 Console.WriteLine("1. Create new user account.");
                 Console.WriteLine("2. Delete user account.");
                 Console.WriteLine("3. See User accounts.");
