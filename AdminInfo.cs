@@ -11,6 +11,7 @@ namespace DotNetDynamos
     {
         public static Dictionary<int, string> AdminUsers = new Dictionary<int, string>();
         private static int nextAdID = 1001;
+        private static int maxLoginAttempts = 3;
 
     }
 }
