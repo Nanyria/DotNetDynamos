@@ -4,14 +4,19 @@
     {
         static void Main(string[] args)
         {
-            //Create an instance of the derived class
-            //   AllUsers userRegistration = new ConsoleUserRegistration();
+            bool isRunning = true;
 
-            //// Call the RegisterUser method
-            //userRegistration.RegisterUser();
+            while (isRunning)
+            {
+                Admin a1 = new Admin();
+                Admin.AddUser(1000, "Admin!1");
 
-            Customer c1 = new Customer();
-            c1.RegisterUser();
+                a1.Login();
+                a1.Menu();
+                isRunning = a1.LogOut();
+            }
+
+            
         }
     }
 }

@@ -12,6 +12,14 @@ namespace DotNetDynamos
         public static Dictionary<int, string> AdminUsers = new Dictionary<int, string>();
         private static int nextAdID = 1001;
         private static int maxLoginAttempts = 3;
+        private bool isLoggedIn = false;
+
+
+        public static void AddUser(int userId, string password)
+        {
+            AdminUsers.Add(userId, password);
+        
+        }
 
         public override void RegisterUser()
         {
@@ -36,7 +44,9 @@ namespace DotNetDynamos
             _IDnumber = nextAdID++;
 
 
-            AdminUsers.Add(_IDnumber, _username);
+            AdminUsers.Add(_IDnumber, Password);
+
+
 
             // Display user information
             Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{_IDnumber}\nFirst name: {_firstname}\nLast name: {_lastname}\nPassword: {Password}");
@@ -62,19 +72,20 @@ namespace DotNetDynamos
         {
             Admin loggedInAdmin = null;
             int loginAttempts = 0;
+
             while (loggedInAdmin == null)
             {
                 Console.WriteLine("Username:");
                 string enteredName = Console.ReadLine();
 
                 // Validate if the entered username exists in AdminUsers dictionary
-                if (AdminUsers.ContainsValue(enteredName))
+                if (AdminUsers.ContainsKey(int.Parse(enteredName)))
                 {
                     Console.WriteLine("Password:");
                     string enteredPassword = Console.ReadLine();
 
                     // Find the key (ID) associated with the entered username
-                    int userID = AdminUsers.FirstOrDefault(x => x.Value == enteredName).Key;
+                    int userID = int.Parse(enteredName);
 
                     // Perform password validation here; replace the placeholder with your logic
                     if (ValidateAdminPassword(userID, enteredPassword)) // Example password validation
@@ -97,15 +108,75 @@ namespace DotNetDynamos
                     Console.WriteLine("Username not found.");
                 }
             }
+
             if (loggedInAdmin == null)
             {
                 Console.WriteLine("Maximum login attempts reached. Please contact support.");
             }
-
         }
+        //public override void Login()
+        //{
+        //    Admin loggedInAdmin = null;
+        //    int loginAttempts = 0;
+        //    while (loggedInAdmin == null)
+        //    {
+        //        Console.WriteLine("Username:");
+        //        string enteredName = Console.ReadLine();
 
+        //        // Validate if the entered username exists in AdminUsers dictionary
+        //        if (AdminUsers.ContainsValue(enteredName))
+        //        {
+        //            Console.WriteLine("Password:");
+        //            string enteredPassword = Console.ReadLine();
+
+        //            // Find the key (ID) associated with the entered username
+        //            int userID = AdminUsers.FirstOrDefault(x => x.Value == enteredName).Key;
+
+        //            // Perform password validation here; replace the placeholder with your logic
+        //            if (ValidateAdminPassword(userID, enteredPassword)) // Example password validation
+        //            {
+        //                Console.Clear();
+        //                Console.WriteLine("Welcome, " + enteredName + "!");
+        //                // Further actions after successful login can be added here
+        //                loggedInAdmin = new Admin();
+        //                loggedInAdmin._IDnumber = userID;
+        //                loggedInAdmin._username = enteredName;
+        //            }
+        //            else
+        //            {
+        //                loginAttempts++;
+        //                Console.WriteLine($"Incorrect password. You have {maxLoginAttempts - loginAttempts} attempts remaining.");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Username not found.");
+        //        }
+        //    }
+        //    if (loggedInAdmin == null)
+        //    {
+        //        Console.WriteLine("Maximum login attempts reached. Please contact support.");
+        //    }
+
+        //}
+
+    public bool LogOut()
+    {
+        if (isLoggedIn)
+        {
+            Console.WriteLine("Logging out...");
+            isLoggedIn = false;
+            return true; // Allow the program to continue
+        }
+        else
+        {
+            Console.WriteLine("No user logged in.");
+            return true; // Allow the program to continue
+        }
+    }
 
         // Method to validate admin password
+
         private bool ValidateAdminPassword(int userID, string enteredPassword)
         {
             // Fetch the stored password associated with the userID from your data source (e.g., AdminUsers dictionary)
@@ -129,7 +200,7 @@ namespace DotNetDynamos
 
             return isValidPassword;
         }
-    
+
 
         public override void Menu()
         {
@@ -147,6 +218,7 @@ namespace DotNetDynamos
                 switch (svar)
                 {
                     case 1:
+                        RegisterCustomer();
                         break;
                     case 2:
                         break;
@@ -157,7 +229,7 @@ namespace DotNetDynamos
                     case 5:
                         break;
                     case 6:
-                        go = false;
+                        LogOut();   
                         break;
                     default:
                         Console.WriteLine("Wrong input, try again.");
