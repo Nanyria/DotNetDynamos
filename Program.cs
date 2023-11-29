@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-
+            Test test = new Test();
+            test.TestTest();
             //while (isRunning)
             //{
             //    Admin a1 = new Admin();
@@ -15,17 +16,17 @@
             //    isRunning = a1.LogOut();
             //}
 
-            bool isRunning = true;
+            //bool isRunning = true;
 
-            while (isRunning)
-            {
-                Customer a1 = new Customer();
-                a1.AddUser("Gurra", "Admin!1", 1001);
+            //while (isRunning)
+            //{
+            //    Customer a1 = new Customer();
+            //    a1.AddUser("Gurra", "Admin!1", 1001);
 
-                a1.Login();
-                a1.Menu();
+            //    a1.Login();
+            //    a1.Menu();
    
-            }
+            //}
 
         }
     }
