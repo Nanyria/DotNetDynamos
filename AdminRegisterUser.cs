@@ -30,10 +30,9 @@ namespace DotNetDynamos
 
             _IDnumber = nextAdID++;
 
+            Admin newAdmin = new Admin(_username, _IDnumber, _firstname, _lastname, Password);
 
-            AdminUsers.Add(_IDnumber, Password);
-
-
+            AdminUsers.Add(_username, newAdmin);
 
             // Display user information
             Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{_IDnumber}\nFirst name: {_firstname}\nLast name: {_lastname}\nPassword: {Password}");
@@ -41,8 +40,8 @@ namespace DotNetDynamos
 
         public static void RegisterCustomer()
         {
-            Customer customer = new Customer();
-            customer.RegisterUser();
+            //Customer customer = new Customer();
+            //customer.RegisterUser();
 
         }
     }

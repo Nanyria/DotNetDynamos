@@ -8,10 +8,18 @@ namespace DotNetDynamos
 {
     internal class AdminTest : AllUsers
     {
-        public static Dictionary<int, string> AdminUsers = new Dictionary<int, string>(); // _IDnumber, _username
-        public Dictionary<int, AllUsers> ad = new Dictionary<int, AllUsers>();
+        public static Dictionary<string, AdminTest> AdminUsers = new Dictionary<string, AdminTest>(); //_username, 
         private static int nextAdID = 1001;
         private static int maxLoginAttempts = 3;
+
+        public AdminTest (string username, int IDnumber, string firstname, string lastname, string password)
+        {
+            _username = username;
+            _IDnumber = IDnumber;
+            _firstname = firstname;
+            _lastname = lastname;
+            Password = password;
+        }
 
         public override void RegisterUser()
         {
@@ -35,32 +43,33 @@ namespace DotNetDynamos
 
             _IDnumber = nextAdID++;
 
+            AdminTest newAdmin = new AdminTest(_username, _IDnumber, _firstname, _lastname, Password);
 
-            AdminUsers.Add(_IDnumber, _username);
+            AdminUsers.Add(_username, newAdmin);
 
             // Display user information
             Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{_IDnumber}\nFirst name: {_firstname}\nLast name: {_lastname}\nPassword: {Password}");
         }
         public static void RegisterCustomer()
         {
-            Customer customer = new Customer();
-            customer.RegisterUser();
+            //Customer customer = new Customer();
+            //customer.RegisterUser();
 
         }
 
         public override void UserList()
         {
-            Console.WriteLine("Customer Users:");
-            foreach (KeyValuePair<int, string> adminUser in AdminUsers)
-            {
-                Console.WriteLine($"ID: {adminUser.Key}, Username: {adminUser.Value}");
-            }
+            //Console.WriteLine("Customer Users:");
+            //foreach (KeyValuePair<int, string> adminUser in AdminUsers)
+            //{
+            //    Console.WriteLine($"ID: {adminUser.Key}, Username: {adminUser.Value}");
+            //}
         }
 
 
         public override void Login()
         {
-            Admin loggedInAdmin = null;
+            AdminTest loggedInAdmin = null;
             int loginAttempts = 0;
             while (loggedInAdmin == null)
             {
@@ -68,23 +77,18 @@ namespace DotNetDynamos
                 string enteredName = Console.ReadLine();
 
                 // Validate if the entered username exists in AdminUsers dictionary
-                if (AdminUsers.ContainsValue(enteredName))
+                if (AdminUsers.ContainsKey(enteredName))
                 {
                     Console.WriteLine("Password:");
                     string enteredPassword = Console.ReadLine();
 
-                    // Find the key (ID) associated with the entered username
-                    int userID = AdminUsers.FirstOrDefault(x => x.Value == enteredName).Key;
-
                     // Perform password validation here; replace the placeholder with your logic
-                    if (ValidateAdminPassword(userID, enteredPassword)) // Example password validation
+                    if (ValidateAdminPassword(enteredName, enteredPassword)) // Example password validation
                     {
                         Console.Clear();
                         Console.WriteLine("Welcome, " + enteredName + "!");
                         // Further actions after successful login can be added here
-                        loggedInAdmin = new Admin();
-                        loggedInAdmin._IDnumber = userID;
-                        loggedInAdmin._username = enteredName;
+                        loggedInAdmin = AdminUsers[enteredName];
                     }
                     else
                     {
@@ -106,16 +110,16 @@ namespace DotNetDynamos
 
 
         // Method to validate admin password
-        private bool ValidateAdminPassword(int userID, string enteredPassword)
+        private bool ValidateAdminPassword(string enteredName, string enteredPassword)
         {
-            // Fetch the stored password associated with the userID from your data source (e.g., AdminUsers dictionary)
-            string storedPassword = string.Empty;
 
             // Check if the userID exists in the dictionary
-            if (AdminUsers.ContainsKey(userID))
+            if (AdminUsers.ContainsKey(enteredName))
             {
                 // Retrieve the stored password corresponding to the userID
-                storedPassword = AdminUsers[userID];
+                AdminTest storedAdminTest = AdminUsers[enteredName];
+
+                return enteredPassword == storedAdminTest.Password;
             }
             else
             {
@@ -123,11 +127,6 @@ namespace DotNetDynamos
                 // For example:
                 throw new ArgumentException("User ID not found.");
             }
-
-            // Compare the stored password with the entered password
-            bool isValidPassword = (enteredPassword == storedPassword);
-
-            return isValidPassword;
         }
 
 
@@ -165,8 +164,27 @@ namespace DotNetDynamos
                 }
             }
 
+        }
+        public void LogOut()
+        {
+            Console.WriteLine("1. Log Out");
+            Console.WriteLine("2. Exit");
+            Console.Write("Enter your choice: ");
 
+            int choice = Convert.ToInt32(Console.ReadLine());
 
+            switch (choice)
+            {
+                case 1:
+                    Login(); // Log Out
+                    break;
+                case 2:
+                    Environment.Exit(0); // Exit the program
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Try again."); // Stay in the loop
+                    break;
+            }
         }
     }
 }

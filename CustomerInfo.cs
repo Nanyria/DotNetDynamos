@@ -10,7 +10,7 @@ namespace DotNetDynamos
 {
     internal partial class Customer : AllUsers
     {
-        public static Dictionary<int, string> CustomerUsers = new Dictionary<int, string>(); // _IDnumber, _username
+        public static Dictionary<string, Customer> CustomerUsers = new Dictionary<string, Customer>(); // _IDnumber, _username
         private static int nextCuID = 1000;     // kolla så att den fortsätter räkna, inte ger ut samma nummer varje gång
         private static int maxLoginAttempts = 3;
         private string _email;
@@ -51,8 +51,16 @@ namespace DotNetDynamos
                 }
             }
         }
+        public Customer(string username, int IDnumber, string firstname, string lastname, string password)
+        {
+            _username = username;
+            _IDnumber = IDnumber;
+            _firstname = firstname;
+            _lastname = lastname;
+            Password = password;
+            //lägg till mail etc
+        }
 
-    
 
     }
 }
