@@ -8,12 +8,14 @@ namespace DotNetDynamos
 {
     internal partial class Customer : AllUsers
     {
-        public void AddUser(string username, string password, int IDnumber)
-        {
-            _username = username;
-            Password = password;
-            _IDnumber = IDnumber;
-            CustomerUsers.Add(IDnumber, password);
-        }
+        //public void AddUser(string username, string password, int IDnumber)
+        //{
+        //    _username = username;
+        //    Password = password;
+        //    _IDnumber = IDnumber;
+        //    CustomerUsers.Add(IDnumber, password);
+        //}
+
+        //Ersätt konstuktor med denna sen
     }
 }

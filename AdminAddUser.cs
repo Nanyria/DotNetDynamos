@@ -8,10 +8,10 @@ namespace DotNetDynamos
 {
     internal partial class Admin : AllUsers
     {
-        public static void AddUser(int userId, string password)
-        {
-            AdminUsers.Add(userId, password);
+        //public static void AddUser(int userId, string password)
+        //{
+        //    AdminUsers.Add(userId, password);
 
-        }
+        //}
     }
 }

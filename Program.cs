@@ -27,14 +27,23 @@
             //    a1.Menu();
 
             //}
+            //while (isRunning)
+            //{
+            //    Admin a1 = new Admin("Admin", 5033, "Lars", "Göransson", "Admin!1");
+            //    Admin.AdminUsers.Add("Admin", a1);
+
+            //    a1.Login();
+            //    a1.Menu();
+                
+            //}
             while (isRunning)
             {
-                AdminTest a1 = new AdminTest("Admin", 5033, "Lars", "Göransson", "Admin!1");
-                AdminTest.AdminUsers.Add("Admin", a1);
+                Customer c1 = new Customer("Kund1", 5013, "Lars", "Göransson", "Kunden!1");
+                Customer.CustomerUsers.Add("Kund1", c1);
 
-                a1.Login();
-                a1.Menu();
-                
+                c1.Login();
+                c1.Menu();
+
             }
         }
     }

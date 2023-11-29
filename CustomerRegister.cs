@@ -40,7 +40,9 @@ namespace DotNetDynamos
 
             _IDnumber = nextCuID++;
 
-            CustomerUsers.Add(_IDnumber, _username);
+            Customer newCustomer = new Customer(_username, _IDnumber, _firstname, _lastname, Password); //Lägg till detta i Add metoden sen
+
+            CustomerUsers.Add(_username, newCustomer);
 
             // Create a new bank account for the user
             Account newAccount = new Account

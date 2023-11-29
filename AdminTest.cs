@@ -52,8 +52,8 @@ namespace DotNetDynamos
         }
         public static void RegisterCustomer()
         {
-            Customer customer = new Customer();
-            customer.RegisterUser();
+            //Customer customer = new Customer();
+            //customer.RegisterUser();
 
         }
 

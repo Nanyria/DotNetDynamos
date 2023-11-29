@@ -14,79 +14,89 @@ namespace DotNetDynamos
             int loginAttempts = 0;
             while (loggedInCustomer == null)
             {
-                Console.WriteLine("Username:");
-                string enteredName = Console.ReadLine();
-
-                // Validate if the entered username exists in CustomerUsers dictionary
-                if (CustomerUsers.ContainsValue(enteredName))
+                while (loggedInCustomer == null)
                 {
-                    Console.WriteLine("Password:");
-                    string enteredPassword = Console.ReadLine();
+                    Console.WriteLine("Username:");
+                    string enteredName = Console.ReadLine();
 
-                    // Find the key (ID) associated with the entered username
-                    int userID = CustomerUsers.FirstOrDefault(x => x.Value == enteredName).Key;
-
-                    // Perform password validation here; replace the placeholder with your logic
-                    if (ValidateUserPassword(userID, enteredPassword)) // Example password validation
+                    // Validate if the entered username exists in AdminUsers dictionary
+                    if (CustomerUsers.ContainsKey(enteredName))
                     {
-                        Console.Clear();
-                        Console.WriteLine("Welcome, " + enteredName + "!");
-                        // Further actions after successful login can be added here
-                        loggedInCustomer = new Customer();
-                        loggedInCustomer._IDnumber = userID;
-                        loggedInCustomer._username = enteredName;
-                        //Lägg till email, birtdate etc
+                        Console.WriteLine("Password:");
+                        string enteredPassword = Console.ReadLine();
+
+                        // Perform password validation here; replace the placeholder with your logic
+                        if (ValidateCustomerPassword(enteredName, enteredPassword)) // Example password validation
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Welcome, " + enteredName + "!");
+                            // Further actions after successful login can be added here
+                            loggedInCustomer = CustomerUsers[enteredName];
+                        }
+                        else
+                        {
+                            loginAttempts++;
+                            Console.WriteLine($"Incorrect password. You have {maxLoginAttempts - loginAttempts} attempts remaining.");
+                        }
                     }
                     else
                     {
-                        loginAttempts++;
-                        Console.WriteLine($"Incorrect password. You have {maxLoginAttempts - loginAttempts} attempts remaining.");
+                        Console.WriteLine("Username not found.");
                     }
                 }
-                else
+                if (loggedInCustomer == null)
                 {
-                    Console.WriteLine("Username not found.");
+                    Console.WriteLine("Maximum login attempts reached. Please contact support.");
                 }
+
+
             }
-            if (loggedInCustomer == null)
-            {
-                Console.WriteLine("Maximum login attempts reached. Please contact support.");
-            }
+
 
         }
 
         // Method to validate admin password
-        private bool ValidateUserPassword(int userID, string enteredPassword)
+        private bool ValidateCustomerPassword(string enteredName, string enteredPassword)
         {
-            // Fetch the stored password associated with the userID from  CustomerUsers dictionary
-            string storedPassword = string.Empty;
 
             // Check if the userID exists in the dictionary
-            if (CustomerUsers.ContainsKey(userID))
+            if (CustomerUsers.ContainsKey(enteredName))
             {
                 // Retrieve the stored password corresponding to the userID
-                storedPassword = CustomerUsers[userID];
+                Customer storedCustomer = CustomerUsers[enteredName];
+
+                return enteredPassword == storedCustomer.Password;
             }
             else
             {
                 // UserID not found, handle the case (throw an exception, return false, etc.)
                 // For example:
                 throw new ArgumentException("User ID not found.");
+
             }
 
-            // Compare the stored password with the entered password
-            bool isValidPassword = (enteredPassword == storedPassword);
-
-            return isValidPassword;
         }
 
         public void LogOut()
         {
+            Console.WriteLine("1. Log Out");
+            Console.WriteLine("2. Exit");
+            Console.Write("Enter your choice: ");
 
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    Login(); // Log Out
+                    break;
+                case 2:
+                    Environment.Exit(0); // Exit the program
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Try again."); // Stay in the loop
+                    break;
+            }
         }
-
-
-
     }
-
 }
