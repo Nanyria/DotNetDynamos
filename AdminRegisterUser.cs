@@ -38,5 +38,12 @@ namespace DotNetDynamos
             // Display user information
             Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{_IDnumber}\nFirst name: {_firstname}\nLast name: {_lastname}\nPassword: {Password}");
         }
+
+        public static void RegisterCustomer()
+        {
+            Customer customer = new Customer();
+            customer.RegisterUser();
+
+        }
     }
 }
