@@ -14,7 +14,7 @@ namespace DotNetDynamos
         public int _IDnumber { get;  set; }
         public string _firstname { get; set; }
         public string _lastname { get; set; }
-        public bool _ifadmin;
+        //public bool _ifadmin;
         
 
         private string _password;

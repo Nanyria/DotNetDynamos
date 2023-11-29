@@ -51,9 +51,12 @@ namespace DotNetDynamos
                 }
             }
         }
-        public static void AddUser(int userId, string password)
+        public void AddUser(string username, string password, int IDnumber)
         {
-            CustomerUsers.Add(userId, password);
+            _username = username;
+            Password = password;
+            _IDnumber = IDnumber;
+            CustomerUsers.Add(IDnumber, password);
         }
 
         //Check to see if we should register users only in Admin or if users should be able to register themselves
