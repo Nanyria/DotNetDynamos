@@ -88,9 +88,13 @@ namespace DotNetDynamos
             switch (choice)
             {
                 case 1:
-                    Login(); // Log Out
+                    Console.WriteLine("You have been logged out.");
+                    //Return loggedincustomer från Loginmetod kanske, så kan vi använda loggedInCustomer == null.
+                    Login(); // Log Out  
                     break;
                 case 2:
+                    Console.WriteLine("You will now be logged out and the program will exit.");
+                    //Return loggedincustomer från Loginmetod kanske, så kan vi använda loggedInCustomer == null.
                     Environment.Exit(0); // Exit the program
                     break;
                 default:
