@@ -116,7 +116,7 @@ namespace DotNetDynamos
             // Check if the userID exists in the dictionary
             if (AdminUsers.ContainsKey(enteredName))
             {
-                // Retrieve the stored password corresponding to the userID
+                // Retrieve the stored password corresponding to the username
                 AdminTest storedAdminTest = AdminUsers[enteredName];
 
                 return enteredPassword == storedAdminTest.Password;
