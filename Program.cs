@@ -16,8 +16,6 @@
             //    isRunning = a1.LogOut();
             //}
 
-            bool isRunning = true;
-
             //while (isRunning)
             //{
             //    Customer a1 = new Customer();
@@ -34,7 +32,7 @@
 
             //    a1.Login();
             //    a1.Menu();
-                
+
             //}
             //while (isRunning)
             //{
@@ -46,14 +44,22 @@
 
             //}
 
+            bool isRunning = true;
+
             while (isRunning)
+            {
 
-                DateTime birthdate = new(1976, 5, 3); // YYYY, MM, DD
-                Customer c1 = new Customer("Kund1", 5013, "Lars", "Göransson", "Kunden!1", "lars@goransson.se", birthdate)
-                {
-
-                };
-            Customer.CustomerUsers.Add("Kund1", c1);
+                Customer c1 = new Customer
+                (
+                    "Kund1",
+                    5013,
+                    "Lars",
+                    "Göransson",
+                    "Kunden!1",
+                    "lars@goransson.se",
+                    "1976-05-03"
+                );
+                Customer.CustomerUsers.Add("Kund1", c1);
 
                 c1.Login();
                 c1.Menu();

@@ -51,11 +51,11 @@ namespace DotNetDynamos
                 }
             }
         }
-        public Customer() : this("No username provided.", 0000, "No firstname provided.", "No lastname provided.", "No password provided", "no email provided", DateTime.MinValue) //Kanske måste se över password och email, men tror inte det.
+        public Customer() : this("No username provided.", 0000, "No firstname provided.", "No lastname provided.", "No password provided", "no email provided", "0000-00-00") //Kanske måste se över password och email, men tror inte det.
         {
 
         }
-        public Customer(string username, int IDnumber, string firstname, string lastname, string password, string email, DateTime birthday)
+        public Customer(string username, int IDnumber, string firstname, string lastname, string password, string email, string Birthday)
         {
             _username = username;
             _IDnumber = IDnumber;
@@ -63,7 +63,7 @@ namespace DotNetDynamos
             _lastname = lastname;
             Password = password;
             _email = email;
-            _birthday = birthday;
+            birthday = Birthday;
 
             // Create a new bank account for the user
             Account newAccount = new Account

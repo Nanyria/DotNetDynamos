@@ -22,5 +22,10 @@ namespace DotNetDynamos
                 Console.WriteLine("---------------------------");
             }
         }
+
+        public void PreCreatedCustomers()
+        {
+            //Skapa lista att lagra användare i som stefan snackade om?
+        }
     }
 }
