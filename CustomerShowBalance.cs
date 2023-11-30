@@ -13,7 +13,7 @@ namespace DotNetDynamos
         {
             if (userAccounts.ContainsKey(id))       // maybe we do not need this if-statement?
             {
-                if (userAccounts[id].Count <= 0) // or maybe "==0"
+                if (userAccounts[id].Count <= 0) 
                 {
                     Console.WriteLine("You do not have yet any accounts.");
                     return;
@@ -24,7 +24,7 @@ namespace DotNetDynamos
                     Console.WriteLine($"Account ID: {account.AccountNumber}\nBalance: {account.Balance}");   
                 }
             }
-            else 
+            else // Maybe we do not need else-statment because you cannot come here without id.
             {
                 Console.WriteLine("User not found.");
             }
