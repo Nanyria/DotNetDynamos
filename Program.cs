@@ -1,6 +1,6 @@
 ﻿namespace DotNetDynamos
 {
-    internal class Program
+    internal partial class Program
     {
         static void Main(string[] args)
         {
@@ -48,9 +48,12 @@
 
             while (isRunning)
 
-                DateTime birthdate = new DateTime(1976, 5, 3); // YYYY, MM, DD
-                Customer c1 = new Customer("Kund1", 5013, "Lars", "Göransson", "Kunden!1", "lars@goransson.se", birthdate);
-                Customer.CustomerUsers.Add("Kund1", c1);
+                DateTime birthdate = new(1976, 5, 3); // YYYY, MM, DD
+                Customer c1 = new Customer("Kund1", 5013, "Lars", "Göransson", "Kunden!1", "lars@goransson.se", birthdate)
+                {
+
+                };
+            Customer.CustomerUsers.Add("Kund1", c1);
 
                 c1.Login();
                 c1.Menu();
