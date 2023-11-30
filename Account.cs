@@ -10,7 +10,7 @@ namespace DotNetDynamos
     {
 
         // Dictionary to hold user accounts (mapping user ID to bank accounts)
-        private static Dictionary<int, List<Account>> userAccounts = new Dictionary<int, List<Account>>();  // userID, List<Account>
+        private static Dictionary<int, List<Account>> userAccounts = new Dictionary<int, List<Account>>();  // userID, List<Account> //ändra till username för koherens
         public int AccountNumber {  get; set; }
         public decimal Balance { get; set; }
 

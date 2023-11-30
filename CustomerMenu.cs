@@ -14,7 +14,7 @@ namespace DotNetDynamos
             while (go)
             {
                 Console.WriteLine("Customer Meny");
-                Console.WriteLine("View account and balance");
+                Console.WriteLine("1.View account and balance");
                 Console.WriteLine("2. Transfer money between accounts");
                 Console.WriteLine("3. Transfer money to other Customer");
                 Console.WriteLine("4. Open new account");

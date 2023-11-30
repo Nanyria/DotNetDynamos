@@ -15,7 +15,7 @@ namespace DotNetDynamos
         private static int maxLoginAttempts = 3;
         private string _email;
         private DateTime _birthday;
-        public string Email
+        public string email
         {
             get => _email;
             set
@@ -36,7 +36,7 @@ namespace DotNetDynamos
         }
         
         //Fix so that user has to enter bithdate until correct bd has been entered
-        public string Birthday
+        public string birthday
         {
             get => _birthday.ToString();
             set
@@ -51,14 +51,26 @@ namespace DotNetDynamos
                 }
             }
         }
-        public Customer(string username, int IDnumber, string firstname, string lastname, string password)
+        public Customer() : this("No username provided.", 0000, "No firstname provided.", "No lastname provided.", "No password provided", "no email provided", DateTime.MinValue) //Kanske måste se över password och email, men tror inte det.
+        {
+
+        }
+        public Customer(string username, int IDnumber, string firstname, string lastname, string password, string email, DateTime birthday)
         {
             _username = username;
             _IDnumber = IDnumber;
             _firstname = firstname;
             _lastname = lastname;
             Password = password;
-            //lägg till mail etc
+            _email = email;
+            _birthday = birthday;
+
+            // Create a new bank account for the user
+            Account newAccount = new Account
+            {
+                AccountNumber = Account.GenerateAccountNumber(_IDnumber),// Generate a unique account number
+                Balance = 0 // Initial balance can be set as needed
+            };
         }
 
 

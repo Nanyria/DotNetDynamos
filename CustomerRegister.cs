@@ -29,10 +29,10 @@ namespace DotNetDynamos
             _lastname = Console.ReadLine();
 
             Console.Write("Enter your email address: ");
-            Email = Console.ReadLine();
+            email = Console.ReadLine();
             // Get birthday
             Console.Write("Enter your birthday (YYYY-MM-DD):");
-            Birthday = Console.ReadLine();
+            birthday = Console.ReadLine();
 
             // Get password from the user
             Console.Write("Password must contain:\n6-12 characters\nAt least one capitol letter\nAt least one digit\nAt least one symbol\nEnter password: ");
@@ -40,7 +40,7 @@ namespace DotNetDynamos
 
             _IDnumber = nextCuID++;
 
-            Customer newCustomer = new Customer(_username, _IDnumber, _firstname, _lastname, Password); //Lägg till detta i Add metoden sen
+            Customer newCustomer = new Customer(_username, _IDnumber, _firstname, _lastname, Password, email, _birthday); //Lägg till detta i Add metoden sen
 
             CustomerUsers.Add(_username, newCustomer);
 
@@ -55,7 +55,7 @@ namespace DotNetDynamos
             Account.AddBankAccount(_IDnumber, newAccount); // Add the bank account to the user
 
             // Display user information
-            Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{nextCuID}\nFirst name: {_firstname}\nLast name: {_lastname}\nEmail: {_email}\nBirthday: {Birthday}\nPassword: {Password}");
+            Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{nextCuID}\nFirst name: {_firstname}\nLast name: {_lastname}\nEmail: {_email}\nBirthday: {birthday}\nPassword: {Password}");
 
 
 
