@@ -36,13 +36,23 @@
             //    a1.Menu();
                 
             //}
+            //while (isRunning)
+            //{
+            //    Customer c1 = new Customer("Kund1", 5013, "Lars", "Göransson", "Kunden!1");
+            //    Customer.CustomerUsers.Add("Kund1", c1);
+
+            //    c1.Login();
+            //    c1.Menu();
+
+            //}
+
             while (isRunning)
             {
-                Customer c1 = new Customer("Kund1", 5013, "Lars", "Göransson", "Kunden!1");
-                Customer.CustomerUsers.Add("Kund1", c1);
+                Admin a1 = new Admin("Kund1", 5013, "Lars", "Göransson", "Kunden!1");
+                Admin.AdminUsers.Add("Kund1", a1);
 
-                c1.Login();
-                c1.Menu();
+                a1.Login();
+                a1.Menu();
 
             }
         }

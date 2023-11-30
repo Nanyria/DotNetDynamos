@@ -10,11 +10,14 @@ namespace DotNetDynamos
     {
         public override void UserList()
         {
-            //Console.WriteLine("Customer Users:");
-            //foreach (KeyValuePair<int, string> adminUser in AdminUsers)
-            //{
-            //    Console.WriteLine($"ID: {adminUser.Key}, Username: {adminUser.Value}");
-            //}
+            Console.WriteLine("Customer Users:");
+            foreach (KeyValuePair<string, Admin> adminUser in AdminUsers)
+            {
+                Console.WriteLine($"ID Number: {adminUser.Value._IDnumber}");
+                Console.WriteLine($"First Name: {adminUser.Value._firstname}");
+                Console.WriteLine($"Last Name: {adminUser.Value._lastname}");
+                Console.WriteLine("---------------------------");
+            }
         }
     }
 }
