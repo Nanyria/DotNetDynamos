@@ -47,12 +47,13 @@
             //}
 
             while (isRunning)
-            {
-                Admin a1 = new Admin("Kund1", 5013, "Lars", "Göransson", "Kunden!1");
-                Admin.AdminUsers.Add("Kund1", a1);
 
-                a1.Login();
-                a1.Menu();
+                DateTime birthdate = new DateTime(1976, 5, 3); // YYYY, MM, DD
+                Customer c1 = new Customer("Kund1", 5013, "Lars", "Göransson", "Kunden!1", "lars@goransson.se", birthdate);
+                Customer.CustomerUsers.Add("Kund1", c1);
+
+                c1.Login();
+                c1.Menu();
 
             }
         }
