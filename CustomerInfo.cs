@@ -51,6 +51,10 @@ namespace DotNetDynamos
                 }
             }
         }
+        public Customer() : this("No username provided.", 0000, "No firstname provided.", "No lastname provided.", "No password provided", "no email provided", DateTime.MinValue) //Kanske måste se över password och email, men tror inte det.
+        {
+
+        }
         public Customer(string username, int IDnumber, string firstname, string lastname, string password, string email, DateTime birthday)
         {
             _username = username;
@@ -60,8 +64,6 @@ namespace DotNetDynamos
             Password = password;
             _email = email;
             _birthday = birthday;
-
-            CustomerUsers.Add(_username, newCustomer);
 
             // Create a new bank account for the user
             Account newAccount = new Account

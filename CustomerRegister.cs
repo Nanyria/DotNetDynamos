@@ -55,7 +55,7 @@ namespace DotNetDynamos
             Account.AddBankAccount(_IDnumber, newAccount); // Add the bank account to the user
 
             // Display user information
-            Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{nextCuID}\nFirst name: {_firstname}\nLast name: {_lastname}\nEmail: {_email}\nBirthday: {Birthday}\nPassword: {Password}");
+            Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{nextCuID}\nFirst name: {_firstname}\nLast name: {_lastname}\nEmail: {_email}\nBirthday: {birthday}\nPassword: {Password}");
 
 
 
