@@ -11,7 +11,7 @@ namespace DotNetDynamos
         public override void UserList()
         {
             Console.WriteLine("Customer Users:");
-            foreach (KeyValuePair<string, Admin> adminUser in AdminUsers)
+            foreach (KeyValuePair<string, Admin> adminUser in AdminUsers) 
             {
                 Console.WriteLine($"ID Number: {adminUser.Value._IDnumber}");
                 Console.WriteLine($"First Name: {adminUser.Value._firstname}");
