@@ -11,7 +11,7 @@ namespace DotNetDynamos
         // This is to show the balance on all accounts.
         static void ShowBalance(Dictionary<int, List<Account>> userAccounts, int id)
         {
-            if (userAccounts.ContainsKey(id))       // maybe we do not need this if-statement?
+            if (userAccounts.ContainsKey(id))       
             {
                 if (userAccounts[id].Count <= 0) 
                 {
@@ -24,7 +24,7 @@ namespace DotNetDynamos
                     Console.WriteLine($"Account ID: {account.AccountNumber}\nBalance: {account.Balance}");   
                 }
             }
-            else // Maybe we do not need else-statment because you cannot come here without id.
+            else 
             {
                 Console.WriteLine("User not found.");
             }
