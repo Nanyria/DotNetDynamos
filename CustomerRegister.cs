@@ -45,7 +45,7 @@ namespace DotNetDynamos
             CustomerUsers.Add(_username, newCustomer);
 
             // Create a new bank account for the user
-            Account newAccount = new Account
+            Account newAccount = new Account //name should = AccNumber
             {
                 AccountNumber = Account.GenerateAccountNumber(_IDnumber),// Generate a unique account number
                 Balance = 0 // Initial balance can be set as needed

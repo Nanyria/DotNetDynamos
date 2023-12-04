@@ -9,22 +9,24 @@ namespace DotNetDynamos
     internal partial class Admin : AllUsers
     {
 
-        public override void Login()
+        public override AllUsers Login()
         {
             Admin loggedInAdmin = null;
             int loginAttempts = 0;
-            while (loggedInAdmin == null)
+            int maxLoginAttempts = 3; // Assuming a maximum of 3 login attempts
+
+            while (loginAttempts < maxLoginAttempts && loggedInAdmin == null)
             {
                 Console.WriteLine("Username:");
                 string enteredName = Console.ReadLine();
 
-                // Validate if the entered username exists in AdminUsers dictionary
+                // Validate if the entered username exists in CustomerUsers dictionary
                 if (AdminUsers.ContainsKey(enteredName))
                 {
                     Console.WriteLine("Password:");
                     string enteredPassword = Console.ReadLine();
 
-                    // Perform password validation here; replace the placeholder with your logic
+                    // Perform password validation here
                     if (ValidateAdminPassword(enteredName, enteredPassword)) // Example password validation
                     {
                         Console.Clear();
@@ -43,10 +45,15 @@ namespace DotNetDynamos
                     Console.WriteLine("Username not found.");
                 }
             }
+
             if (loggedInAdmin == null)
             {
                 Console.WriteLine("Maximum login attempts reached. Please contact support.");
             }
+
+            return loggedInAdmin;
+
+
 
         }
 
@@ -59,9 +66,9 @@ namespace DotNetDynamos
             if (AdminUsers.ContainsKey(enteredName))
             {
                 // Retrieve the stored password corresponding to the userID
-                Admin storedAdminTest = AdminUsers[enteredName];
+                Admin storedAdmin = AdminUsers[enteredName];
 
-                return enteredPassword == storedAdminTest.Password;
+                return enteredPassword == storedAdmin.Password;
             }
             else
             {

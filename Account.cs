@@ -15,6 +15,12 @@ namespace DotNetDynamos
         public decimal Balance { get; set; }
 
 
+        //public static void AddUser(int userId, List<Account>ac)
+        //{
+        //    userAccounts.Add(userId, ac);
+        //}
+
+
         // Method to add a bank account for a customer
         public static void AddBankAccount(int userID, Account newAccount)
         {
