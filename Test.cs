@@ -57,5 +57,42 @@ namespace DotNetDynamos
         //    //Customer cus = new Customer();
         //    //cus.Login();
         //}
+        //Dictionary<int, List<Account>> dic = new Dictionary<int, List<Account>>();
+
+        //public Test()
+        //{
+        //    List<Account> user1Accounts = new List<Account>
+        //{
+        //    new Account{
+        //        AccountNumber=1,
+        //        Balance= 1234m
+        //    },
+        //    new Account
+        //    {
+        //        AccountNumber = 2,
+        //        Balance = 1233m
+        //    },
+        //};
+        //    List<Account> user2Accounts = new List<Account>
+        //{
+        //     new Account{
+        //        AccountNumber=1,
+        //        Balance= 2234m
+        //    },
+        //    new Account
+        //    {
+        //        AccountNumber = 2,
+        //        Balance = 2233m
+        //    },
+        //};
+        //    List<Account> user3Accounts = new List<Account>
+        //    {
+
+        //    };
+
+        //    dic.Add(2, user2Accounts);
+
+        //}
+
     }
 }

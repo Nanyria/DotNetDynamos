@@ -28,10 +28,10 @@ namespace DotNetDynamos
                 switch (choice)
                 {
                     case 1:
-                        ShowBalance();
+                        ShowBalance(userAccounts, _IDnumber); // Dictionary<int, List<Account>> userAccounts, int id
                         break;
                     case 2:
-                        Transfer();
+                        Transfer(); // Dictionary<int, List<Account>> userAccounts, int id
                         break;
                     case 3:
                         TransferToOthers();
