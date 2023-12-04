@@ -8,8 +8,9 @@ namespace DotNetDynamos
 {
     internal partial class Customer : AllUsers
     {
-        static void NewAccount() //29/11
+        static void NewAccount(Dictionary<int, List<Account>> userAccounts, int id) //29/11
         {
+           
 
         }
     }

@@ -11,6 +11,8 @@ namespace DotNetDynamos
         // This is to show the balance on all accounts.
         static void ShowBalance(Dictionary<int, List<Account>> userAccounts, int id)
         {
+            //  Eller räcker det att anropa DisplayUserAccounts(int userID) !? //Asuka
+            //Account.DisplayUserAccounts(id);
             if (userAccounts.ContainsKey(id))       
             {
                 if (userAccounts[id].Count <= 0) 
