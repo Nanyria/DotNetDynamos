@@ -105,7 +105,7 @@ namespace DotNetDynamos
         // Abstract method to be implemented by derived classes.
         public abstract void RegisterUser();
 
-        public abstract void Login();
+        public abstract AllUsers Login(); //Se över, interface?
         public abstract void Menu();
         public abstract void UserList();
          

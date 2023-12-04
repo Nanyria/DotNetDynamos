@@ -1,57 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DotNetDynamos
+﻿namespace DotNetDynamos
 {
     internal partial class Customer : AllUsers
     {
-        public override void Login()
+        public override AllUsers Login()
         {
             Customer loggedInCustomer = null;
             int loginAttempts = 0;
-            while (loggedInCustomer == null)
+            int maxLoginAttempts = 3; // Assuming a maximum of 3 login attempts
+
+            while (loginAttempts < maxLoginAttempts && loggedInCustomer == null)
             {
-                while (loggedInCustomer == null)
+                Console.WriteLine("Username:");
+                string enteredName = Console.ReadLine();
+
+                // Validate if the entered username exists in CustomerUsers dictionary
+                if (CustomerUsers.ContainsKey(enteredName))
                 {
-                    Console.WriteLine("Username:");
-                    string enteredName = Console.ReadLine();
+                    Console.WriteLine("Password:");
+                    string enteredPassword = Console.ReadLine();
 
-                    // Validate if the entered username exists in AdminUsers dictionary
-                    if (CustomerUsers.ContainsKey(enteredName))
+                    // Perform password validation here
+                    if (ValidateCustomerPassword(enteredName, enteredPassword)) // Example password validation
                     {
-                        Console.WriteLine("Password:");
-                        string enteredPassword = Console.ReadLine();
-
-                        // Perform password validation here; replace the placeholder with your logic
-                        if (ValidateCustomerPassword(enteredName, enteredPassword)) // Example password validation
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Welcome, " + enteredName + "!");
-                            // Further actions after successful login can be added here
-                            loggedInCustomer = CustomerUsers[enteredName];
-                        }
-                        else
-                        {
-                            loginAttempts++;
-                            Console.WriteLine($"Incorrect password. You have {maxLoginAttempts - loginAttempts} attempts remaining.");
-                        }
+                        Console.Clear();
+                        Console.WriteLine("Welcome, " + enteredName + "!");
+                        // Further actions after successful login can be added here
+                        loggedInCustomer = CustomerUsers[enteredName];
                     }
                     else
                     {
-                        Console.WriteLine("Username not found.");
+                        loginAttempts++;
+                        Console.WriteLine($"Incorrect password. You have {maxLoginAttempts - loginAttempts} attempts remaining.");
                     }
                 }
-                if (loggedInCustomer == null)
+                else
                 {
-                    Console.WriteLine("Maximum login attempts reached. Please contact support.");
+                    Console.WriteLine("Username not found.");
                 }
-
-
             }
 
+            if (loggedInCustomer == null)
+            {
+                Console.WriteLine("Maximum login attempts reached. Please contact support.");
+            }
+
+            return loggedInCustomer;
 
         }
 
