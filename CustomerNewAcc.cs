@@ -8,22 +8,22 @@ namespace DotNetDynamos
 {
     internal partial class Customer : AllUsers
     {
-        static void NewAccount(Dictionary<int, List<Account>> userAccounts, int id) //29/11
+        static void NewAccount(AllUsers loggedInCustomer) //29/11
         {
             Console.WriteLine("Open new Account");
             // login?
-            List<Account> accounts = userAccounts[id];   // Bring up list from dictionary in otder to add new account.
+            List<Account> accounts = Account.userAccounts[loggedInCustomer._IDnumber];   // Bring up list from dictionary in order to add new account.
             Console.WriteLine("How much money do you want to deposit?");
             decimal balance = GetValidDecimall(); // kollar om det är siffra.
             Account newAccount = new Account
             {
-                AccountNumber = Account.GenerateAccountNumber(id),// Generate a unique account number
+                AccountNumber = Account.GenerateAccountNumber(loggedInCustomer._IDnumber),// Generate a unique account number
                 Balance = balance,
             };
             ////Account.AddBankAccount(id, newAccount); eller ↓↓
             accounts.Add(newAccount);
             Console.WriteLine("Congrats! Your account has been created succesfully!");
-            Console.WriteLine($"Here is your new accout: " +$"\nAccount Number: {newAccount.AccountNumber}" +
+            Console.WriteLine($"Here is your new accout: " + $"\nAccount Number: {newAccount.AccountNumber}" +
                               $"\nBalance:{newAccount.Balance}");
         }
         static decimal GetValidDecimall()
