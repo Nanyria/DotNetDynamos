@@ -9,23 +9,23 @@ namespace DotNetDynamos
 {
     internal partial class Customer : AllUsers
     {
-        static void Transfer(Dictionary<int, List<Account>> userAccounts, int id)
+        static void Transfer(AllUsers loggedInCustomer, Dictionary<int, List<Account>> userAccounts, int id)
         {
             // List<Account> = int AccountNumber, decimal Balance
             Console.WriteLine("Here are your accounts: ");
-            ShowBalance(userAccounts, id);
+            ShowBalance(loggedInCustomer);
             Console.WriteLine("Which account do you want to transfer from?");
             Console.WriteLine("Please press \"enter\" to go to meny.");
             Account sourceAccount = null;
             Account targetAccount = null;
-            List<Account> accounts = userAccounts[id];
+            List<Account> accounts = Account.userAccounts[loggedInCustomer._IDnumber];/*userAccounts[id];*/
             while (true)
             {
                 int transferFrom = GetValidInt();
                 if (userAccounts.ContainsKey(id))       // wondering to create method to check if the key in the dictionary.
                 {
                     accounts = userAccounts[id];
-                    sourceAccount = accounts.Find(e => e.AccountNumber == transferFrom);
+                    sourceAccount = accounts.Find(e => e._accountNumber == transferFrom);
                     Console.WriteLine("You want to transfer money from account {0}", transferFrom + ", correct?");
                     Console.WriteLine("[1]. Yes.");
                     Console.WriteLine("[2]. No.");
@@ -51,11 +51,11 @@ namespace DotNetDynamos
 
                     Console.WriteLine("Which account do you want to transfer to?");
                     int transferTo = GetValidInnt();
-                    targetAccount = accounts.Find(e => e.AccountNumber == transferFrom);
+                    targetAccount = accounts.Find(e => e._accountNumber == transferFrom);
 
                     Console.WriteLine("How much money do you want to transfer?");
                     decimal money = GetValidDecimal();
-                    if (money < 0 || money > sourceAccount.Balance)
+                    if (money < 0 || money > sourceAccount._balance)
                     {
                         Console.WriteLine("Invalid transfer amount.");
                         return;

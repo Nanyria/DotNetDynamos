@@ -14,17 +14,19 @@ namespace DotNetDynamos
             // login?
             List<Account> accounts = Account.userAccounts[loggedInCustomer._IDnumber];   // Bring up list from dictionary in order to add new account.
             Console.WriteLine("How much money do you want to deposit?");
-            decimal balance = GetValidDecimall(); // kollar om det är siffra.
+            double balance = Convert.ToDouble(Console.ReadLine());/*GetValidDecimall()*/; // kollar om det är siffra.
             Account newAccount = new Account
             {
-                AccountNumber = Account.GenerateAccountNumber(loggedInCustomer._IDnumber),// Generate a unique account number
-                Balance = balance,
+                _accountNumber = Account.GenerateAccountNumber(loggedInCustomer._IDnumber),// Generate a unique account number
+                _currency = "",
+                _accountName = "",
+                 _balance = balance,
             };
             ////Account.AddBankAccount(id, newAccount); eller ↓↓
             accounts.Add(newAccount);
             Console.WriteLine("Congrats! Your account has been created succesfully!");
-            Console.WriteLine($"Here is your new accout: " + $"\nAccount Number: {newAccount.AccountNumber}" +
-                              $"\nBalance:{newAccount.Balance}");
+            Console.WriteLine($"Here is your new accout: " + $"\nAccount Number: {newAccount._accountNumber}" +
+                              $"\nBalance:{newAccount._balance}");
         }
         static decimal GetValidDecimall()
         {
