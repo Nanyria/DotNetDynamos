@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DotNetDynamos
 {
-    internal class Account
+    internal partial class Account
     {
 
         // Dictionary to hold user accounts (mapping user ID to bank accounts)
