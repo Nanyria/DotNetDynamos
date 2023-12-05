@@ -106,7 +106,7 @@ namespace DotNetDynamos
         public abstract void RegisterUser();
 
         public abstract AllUsers Login(); //Se över, interface?
-        public abstract void Menu();
+        public abstract void Menu(AllUsers loggedInCustomer); //Behöver ta imot LoggedInUser
         public abstract void UserList();
          
     }

@@ -20,7 +20,8 @@ namespace DotNetDynamos
                 "Johansson",
                 "Password1!",
                 "Johan@Johansson.se",
-                "1978-01-01"
+                "1978-01-01",
+                new List<Account>()
             );
 
             Customer user2 = new Customer
@@ -31,7 +32,8 @@ namespace DotNetDynamos
                 "Andersson",
                 "Password2!",
                 "Anna@Andersson.se",
-                "1988-01-01"
+                "1988-01-01",
+                new List<Account>()
             );
 
             Customer user3 = new Customer
@@ -42,7 +44,8 @@ namespace DotNetDynamos
                 "Karlsson",
                 "Password3!",
                 "Alice@Karlsson.se",
-                "1998-01-01"
+                "1998-01-01",
+                new List<Account>()
             );
 
             Customer.CustomerUsers.Add("User1", user1);

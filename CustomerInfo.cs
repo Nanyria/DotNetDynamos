@@ -52,10 +52,10 @@ namespace DotNetDynamos
                 }
             }
         }
-        //public Customer() : this("No username provided.", 0000, "No firstname provided.", "No lastname provided.", "No password provided", "no email provided", "0000-00-00") //Lägg till List
-        //{
+        public Customer() : this("No username provided.", 0000, "No firstname provided.", "No lastname provided.", "No password provided", "no email provided", "0000-00-00", new List<Account>()) //Lägg till List
+        {
 
-        //}
+        }
         public Customer(string username, int IDnumber, string firstname, string lastname, string password, string email, string birthday, List<Account> accounts)
         {
             _username = username;

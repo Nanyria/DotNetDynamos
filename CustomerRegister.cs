@@ -40,7 +40,7 @@ namespace DotNetDynamos
 
             _IDnumber = nextCuID++;
 
-            Customer newCustomer = new Customer(_username, _IDnumber, _firstname, _lastname, Password, email, birthday); //Lägg till detta i Add metoden sen
+            Customer newCustomer = new Customer(_username, _IDnumber, _firstname, _lastname, Password, email, birthday, _accounts); //Lägg till detta i Add metoden sen
 
             CustomerUsers.Add(_username, newCustomer);
 
@@ -48,12 +48,12 @@ namespace DotNetDynamos
             //Move to account later?
             Account MainAccount = new Account //name should = AccNumber
             {
-                AccountNumber = Account.GenerateAccountNumber(_IDnumber),// Generate a unique account number
-                Balance = 0 // Initial balance can be set as needed
+                _accountNumber = Account.GenerateAccountNumber(_IDnumber),// Generate a unique account number
+                _balance = 0 // Initial balance can be set as needed
             };
 
             // Assuming you have the user's unique ID (newUserID)
-            Account.AddBankAccount(_IDnumber, MainAccount); // Add the bank account to the user
+            Account.AddBankAccount(newCustomer); // Add the bank account to the user
 
             // Display user information
             Console.WriteLine($"User registered!\nUsername: {_username}\nID Number:{nextCuID}\nFirst name: {_firstname}\nLast name: {_lastname}\nEmail: {_email}\nBirthday: {birthday}\nPassword: {Password}");

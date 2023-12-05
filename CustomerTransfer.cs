@@ -18,7 +18,7 @@ namespace DotNetDynamos
             Console.WriteLine("Please press \"enter\" to go to meny.");
             Account sourceAccount = null;
             Account targetAccount = null;
-            List<Account> accounts = Account.userAccounts[loggedInCustomer._IDnumber];/*userAccounts[id];*/
+            List<Account> accounts = Account.userAccounts[(Customer)loggedInCustomer];/*userAccounts[id];*/
             while (true)
             {
                 int transferFrom = GetValidInt();
@@ -60,8 +60,8 @@ namespace DotNetDynamos
                         Console.WriteLine("Invalid transfer amount.");
                         return;
                     }
-                    sourceAccount.Balance -= money;
-                    targetAccount.Balance += money;
+                    sourceAccount._balance -= money;
+                    targetAccount._balance += money;
                 }
                 else
                 {

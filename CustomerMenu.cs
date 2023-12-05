@@ -8,7 +8,7 @@ namespace DotNetDynamos
 {
     internal partial class Customer : AllUsers
     {
-        public override void Menu()
+        public override void Menu(AllUsers loggedInCustomer)
         {
             bool go = true;
             while (go)
@@ -28,10 +28,10 @@ namespace DotNetDynamos
                 switch (choice)
                 {
                     case 1:
-                        ShowBalance(userAccounts, _IDnumber); // Dictionary<int, List<Account>> userAccounts, int id
+                        ShowBalance(loggedInCustomer); // Dictionary<int, List<Account>> userAccounts, int id
                         break;
                     case 2:
-                        Transfer(); // Dictionary<int, List<Account>> userAccounts, int id
+                        Transfer(loggedInCustomer); // Dictionary<int, List<Account>> userAccounts, int id
                         break;
                     case 3:
                         TransferToOthers();
