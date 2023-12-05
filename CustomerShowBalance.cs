@@ -12,12 +12,13 @@ namespace DotNetDynamos
         static void ShowBalance(AllUsers loggedInCustomer)
 
         {
-
-            Console.WriteLine("Here are your accounts");
-            foreach () //Acc in loggedInCustomer
-            {
-                Console.WriteLine($"Account ID: {account.AccountNumber}\nBalance: {account.Balance}");
-            }
+            Account account = new Account();
+            account.DisplayUserAccounts(loggedInCustomer._IDnumber);
+            //Console.WriteLine("Here are your accounts");
+            //foreach () //Acc in loggedInCustomer
+            //{
+            //    Console.WriteLine($"Account ID: {account.AccountNumber}\nBalance: {account.Balance}");
+            //}
 
 
         }
