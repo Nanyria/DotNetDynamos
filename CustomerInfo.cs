@@ -68,11 +68,11 @@ namespace DotNetDynamos
             _accounts = accounts;
 
             // Create a new bank account for the user
-            Account MainAccount = new Account
-            {
-                AccountNumber = Account.GenerateAccountNumber(_IDnumber),// Generate a unique account number
-                Balance = 0 // Initial balance can be set as needed
-            };
+            //Account MainAccount = new Account
+            //{
+            //    AccountNumber = Account.GenerateAccountNumber(_IDnumber),// Generate a unique account number
+            //    Balance = 0 // Initial balance can be set as needed
+            //};
         }
 
 

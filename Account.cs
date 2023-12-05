@@ -22,7 +22,7 @@ namespace DotNetDynamos
             _balance = Balance;
         }
         // Dictionary to hold user accounts (mapping user ID to bank accounts)
-        private static Dictionary<Customer, List<Account>> userAccounts = new Dictionary<Customer, List<Account>>();  // userID, List<Account>
+        private static Dictionary<Customer, List<Account>> userAccounts = new Dictionary<Customer, List<Account>>();  
 
 
         static Customer customer = new Customer();
@@ -40,7 +40,8 @@ namespace DotNetDynamos
         // Method to add a bank account for a customer
         public static void AddBankAccount(AllUsers loggedInCustomer) //Add new acc
         {
-            if (!userAccounts.ContainsKey(userID))
+
+            if (!userAccounts.ContainsKey(loggedInCustomer))
             {
                 userAccounts[userID] = new List<Account>();
             }
@@ -56,7 +57,7 @@ namespace DotNetDynamos
                 Console.WriteLine($"Bank Accounts for User ID: {loggedInCustomer}");
                 foreach (List<Account> account in userAccounts.Values)
                 {
-                    Console.WriteLine($"Account Number: {account.AccountNumber}, Balance: {account.Balance}");
+                    Console.WriteLine($"Account Number: {account._accountNumber}, Balance: {account._balance}");
                 }
             }
             else
