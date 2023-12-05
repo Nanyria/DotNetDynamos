@@ -18,7 +18,6 @@ namespace DotNetDynamos
                 Console.WriteLine($"Account ID: {account.AccountNumber}\nBalance: {account.Balance}");
             }
 
-
         }
     }
 }
