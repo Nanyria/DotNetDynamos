@@ -15,6 +15,7 @@ namespace DotNetDynamos
         private static int maxLoginAttempts = 3;
         private string _email;
         private DateTime _birthday;
+        private List<Account> _accounts;
         public string email
         {
             get => _email;
@@ -51,11 +52,11 @@ namespace DotNetDynamos
                 }
             }
         }
-        public Customer() : this("No username provided.", 0000, "No firstname provided.", "No lastname provided.", "No password provided", "no email provided", "0000-00-00") //Kanske måste se över password och email, men tror inte det.
-        {
+        //public Customer() : this("No username provided.", 0000, "No firstname provided.", "No lastname provided.", "No password provided", "no email provided", "0000-00-00") //Lägg till List
+        //{
 
-        }
-        public Customer(string username, int IDnumber, string firstname, string lastname, string password, string email, string Birthday)
+        //}
+        public Customer(string username, int IDnumber, string firstname, string lastname, string password, string email, string birthday, List<Account> accounts)
         {
             _username = username;
             _IDnumber = IDnumber;
@@ -63,10 +64,11 @@ namespace DotNetDynamos
             _lastname = lastname;
             Password = password;
             _email = email;
-            birthday = Birthday;
+            this.birthday = birthday;
+            _accounts = accounts;
 
             // Create a new bank account for the user
-            Account newAccount = new Account
+            Account MainAccount = new Account
             {
                 AccountNumber = Account.GenerateAccountNumber(_IDnumber),// Generate a unique account number
                 Balance = 0 // Initial balance can be set as needed

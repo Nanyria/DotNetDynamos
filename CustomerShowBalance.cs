@@ -10,9 +10,8 @@ namespace DotNetDynamos
     {
         // This is to show the balance on all accounts.
         static void ShowBalance(AllUsers loggedInCustomer)
-
         {
-
+            loggedInCustomer._IDnumber
             Console.WriteLine("Here are your accounts");
             foreach () //Acc in loggedInCustomer
             {
