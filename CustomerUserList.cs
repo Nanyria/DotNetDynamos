@@ -19,6 +19,7 @@ namespace DotNetDynamos
                 Console.WriteLine($"Last Name: {customerUser.Value._lastname}");
                 Console.WriteLine($"Email: {customerUser.Value.email}");
                 Console.WriteLine($"Birthday: {customerUser.Value.birthday}");
+                Console.WriteLine($"Account: {customerUser.Value._accounts}");
                 Console.WriteLine("---------------------------");
             }
         }

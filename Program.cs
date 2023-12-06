@@ -10,7 +10,7 @@
 
             while (isRunning)
             {
-
+                
                 //Customer c1 = new Customer
                 //(
                 //    "Kund1",

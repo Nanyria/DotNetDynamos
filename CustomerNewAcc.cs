@@ -12,7 +12,7 @@ namespace DotNetDynamos
         {
             Console.WriteLine("Open new Account");
             // login?
-            List<Account> accounts = Account.userAccounts[loggedInCustomer._IDnumber];   // Bring up list from dictionary in order to add new account.
+        List<Account> accounts = Account.userAccounts[loggedInCustomer];   // Bring up list from dictionary in order to add new account.
             Console.WriteLine("How much money do you want to deposit?");
             double balance = Convert.ToDouble(Console.ReadLine());/*GetValidDecimall()*/; // kollar om det är siffra.
             Account newAccount = new Account

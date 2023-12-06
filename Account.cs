@@ -22,7 +22,7 @@ namespace DotNetDynamos
             _balance = Balance;
         }
         // Dictionary to hold user accounts (mapping user ID to bank accounts)
-        private static Dictionary<Customer, List<Account>> userAccounts = new Dictionary<Customer, List<Account>>();  
+        public static Dictionary<Customer, List<Account>> userAccounts = new Dictionary<Customer, List<Account>>();  
 
 
         static Customer customer = new Customer();
@@ -52,7 +52,7 @@ namespace DotNetDynamos
         // Method to display user bank accounts
         public static void DisplayUserAccounts(AllUsers loggedInCustomer)  // Lägg till funktion för användare att döpa(namnge) account
         {
-            if (userAccounts.ContainsKey(customer))
+            if (userAccounts.ContainsKey((Customer)loggedInCustomer))
             {
                 Console.WriteLine($"Bank Accounts for User ID: {loggedInCustomer}");
                 foreach (List<Account> account in userAccounts.Values)

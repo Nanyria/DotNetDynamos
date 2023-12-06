@@ -20,7 +20,11 @@ namespace DotNetDynamos
                 "Johansson",
                 "Password1!",
                 "Johan@Johansson.se",
-                "1978-01-01"
+                "1978-01-01",
+                new List<Account>
+                {
+                    new Account(50011234, "MainAccount", "SEK", 1234),
+                }
             );
 
             Customer user2 = new Customer
@@ -31,7 +35,12 @@ namespace DotNetDynamos
                 "Andersson",
                 "Password2!",
                 "Anna@Andersson.se",
-                "1988-01-01"
+                "1988-01-01",
+                 new List<Account>
+                {
+                    new Account(50028977, "MainAccount", "SEK", 1234),
+                    new Account(50011265, "SavingAccount", "EURO", 1234)
+                }
             );
 
             Customer user3 = new Customer
@@ -42,12 +51,27 @@ namespace DotNetDynamos
                 "Karlsson",
                 "Password3!",
                 "Alice@Karlsson.se",
-                "1998-01-01"
+                "1998-01-01",
+                 new List<Account>
+                {
+                    new Account(50034456, "MainAccount", "SEK", 1234),
+                    new Account(50016789, "SavingAccount", "EURO", 1234)
+                }
             );
+
+            Admin ad1 = new Admin
+                (
+                    "Admin1",
+                    1001,
+                    "Karl",
+                    "Larsson",
+                    "Adminmin!2"
+                );
 
             Customer.CustomerUsers.Add("User1", user1);
             Customer.CustomerUsers.Add("User2", user2);
             Customer.CustomerUsers.Add("User3", user3);
+            Admin.AdminUsers.Add("Admin1", ad1);
 
             user1.Login();
             user1.Menu();
@@ -58,6 +82,8 @@ namespace DotNetDynamos
             user3.Login();
             user3.Menu();
 
+            //ad1.Login();
+            //ad1.Menu();
 
 
 

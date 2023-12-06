@@ -13,12 +13,12 @@ namespace DotNetDynamos
         {
             // List<Account> = int AccountNumber, decimal Balance
             Console.WriteLine("Here are your accounts: ");
-            ShowBalance(loggedInCustomer);
+            Account.DisplayUserAccounts(loggedInCustomer);
             Console.WriteLine("Which account do you want to transfer from?");
             Console.WriteLine("Please press \"enter\" to go to meny.");
             Account sourceAccount = null;
             Account targetAccount = null;
-            List<Account> accounts = Account.userAccounts[loggedInCustomer._IDnumber];/*userAccounts[id];*/
+            List<Account> accounts = Account.userAccounts[(Customer)loggedInCustomer];
             while (true)
             {
                 int transferFrom = GetValidInt();
@@ -80,16 +80,22 @@ namespace DotNetDynamos
 
         static int GetValidInnt()
         {
-            int number;
             while (true)
             {
-                if(!int.TryParse(Console.ReadLine(), out number)) 
-                { 
-                    Console.WriteLine("Invalid input. Please enter en integer.");
-                    return -1;
+                int number;
+                while (true)
+                {
+                    if (int.TryParse(Console.ReadLine(), out number))
+                    {
+                        
+                        return number;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input. Please enter an integer.");
+                    }
                 }
             }
-            return number;
         }
      
         static int GetValidInt() // This goes back to meny if the user pressed enter.
@@ -114,16 +120,19 @@ namespace DotNetDynamos
         }
         static decimal GetValidDecimal()
         {
-            decimal money;
+            
             while (true)
             {
+                decimal money;
                 if (decimal.TryParse(Console.ReadLine(), out money))
                 {
-                    Console.WriteLine("Invalid input. Please enter integer.");
-                    return -1;
+                    return money;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter an integer.");
                 }
             }
-            return money;
         }
 
         static void TransferToOthers()
