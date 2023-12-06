@@ -12,7 +12,7 @@ namespace DotNetDynamos
         public int _accountNumber { get; set; }
         public string _accountName { get; set; }
         public string _currency { get; set; }
-        public double _balance { get; set; }
+        public double _balance { get; set; } //Decimal eller double? Sätt decimal - mer noggrann, kan använda fler nollor, sen avrunda till 2 dec 
 
         public Account(int Accountnumber, string Accountname, string Currency, double Balance)
         {
@@ -38,6 +38,28 @@ namespace DotNetDynamos
 
 
         // Method to add a bank account for a customer
+        
+        //if - no account > Main acc
+        //if else - Display list Acc + Choice Create new Acc
+        /// <summary>
+        //if (no acc)
+        //{
+        //addMainAcc
+        //    }
+        //else if (MainAcc = true)
+        //{
+        //DisplayUserAcC
+        //Choice > Create New
+        //if (choice)
+        //Private Acc
+        //Savings Acc //Bara valet, v har inte skivit koden än, går att kommentera ut så länge
+        // then > Add Info
+        // then > If accepted > Show info
+        //Console.Clear
+        //return to Menu
+        //}
+        /// </summary>
+        /// <param name="loggedInCustomer"></param>
         public static void AddBankAccount(AllUsers loggedInCustomer) //Add new acc
         {
             if (!userAccounts.ContainsKey(userID))
@@ -46,6 +68,7 @@ namespace DotNetDynamos
             }
 
             userAccounts[userID].Add(MainAccount);
+
         }
 
         // Method to display user bank accounts

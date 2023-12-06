@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DotNetDynamos
 {
-    internal interface Interface1
+    internal interface AllUserMetods
     {
     }
 }

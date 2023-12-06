@@ -8,7 +8,7 @@ namespace DotNetDynamos
 {
     internal partial class Customer : AllUsers
     {
-        static void NewAccount(Dictionary<int, List<Account>> userAccounts, int id) //29/11
+        static void NewAccount(Dictionary<int, List<Account>> userAccounts, int id) //29/11  //Kalla på metod i Accounts.AddBankAccount
         {
             Console.WriteLine("Open new Account");
             // login?

@@ -55,7 +55,7 @@
             // Check if the userID exists in the dictionary
             if (CustomerUsers.ContainsKey(enteredName))
             {
-                // Retrieve the stored password corresponding to the userID
+                // Retrieve the stored password corresponding to the username
                 Customer storedCustomer = CustomerUsers[enteredName];
 
                 return enteredPassword == storedCustomer.Password;

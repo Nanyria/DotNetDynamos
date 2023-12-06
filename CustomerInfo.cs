@@ -10,7 +10,7 @@ namespace DotNetDynamos
 {
     internal partial class Customer : AllUsers
     {
-        public static Dictionary<string, Customer> CustomerUsers = new Dictionary<string, Customer>(); // _IDnumber, _username
+        public static Dictionary<string, Customer> CustomerUsers = new Dictionary<string, Customer>(); // _username, Customer
         private static int nextCuID = 1000;     // kolla så att den fortsätter räkna, inte ger ut samma nummer varje gång
         private static int maxLoginAttempts = 3;
         private string _email;
@@ -68,11 +68,11 @@ namespace DotNetDynamos
             _accounts = accounts;
 
             // Create a new bank account for the user
-            Account MainAccount = new Account
-            {
-                AccountNumber = Account.GenerateAccountNumber(_IDnumber),// Generate a unique account number
-                Balance = 0 // Initial balance can be set as needed
-            };
+            //Account MainAccount = new Account
+            //{
+            //    AccountNumber = Account.GenerateAccountNumber(_IDnumber),// Generate a unique account number
+            //    Balance = 0 // Initial balance can be set as needed
+            //};
         }
 
 

@@ -9,7 +9,7 @@ namespace DotNetDynamos
 {
     internal partial class Customer : AllUsers
     {
-        static void Transfer(Dictionary<int, List<Account>> userAccounts, int id)
+        static void Transfer(AllUsers loggedInCustomer)
         {
             // List<Account> = int AccountNumber, decimal Balance
             Console.WriteLine("Here are your accounts: ");
@@ -22,7 +22,7 @@ namespace DotNetDynamos
             while (true)
             {
                 int transferFrom = GetValidInt();
-                if (userAccounts.ContainsKey(id))       // wondering to create method to check if the key in the dictionary.
+                if (userAccounts.ContainsKey(id))       // wondering to create method to check if the key in the dictnionary.
                 {
                     accounts = userAccounts[id];
                     sourceAccount = accounts.Find(e => e.AccountNumber == transferFrom);
