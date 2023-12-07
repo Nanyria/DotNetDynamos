@@ -9,7 +9,8 @@ namespace DotNetDynamos
     internal partial class Customer : AllUsers
     {
         public override void Menu()
-        {
+        {   // If a user successfully logs in, they will be redirected to the menu.
+            //bool approved = CustomerUsers.Values.Contains(Login()); jag är osäker här.
             bool go = true;
             while (go)
             {
@@ -23,12 +24,12 @@ namespace DotNetDynamos
                 Console.WriteLine("7. Logg out");
 
                 Console.Write("Choose meny: ");
-                int choice = Convert.ToInt32(Console.ReadLine());
+                int choice = Convert.ToInt32(Console.ReadLine()); // Är det okej att använda Validator klassen?
 
                 switch (choice)
                 {
                     case 1:
-                        ShowBalance(userAccounts, _IDnumber); // Dictionary<int, List<Account>> userAccounts, int id
+                        ShowBalance(Login()); // Dictionary<int, List<Account>> userAccounts, int id
                         break;
                     case 2:
                         Transfer(); // Dictionary<int, List<Account>> userAccounts, int id
@@ -48,7 +49,6 @@ namespace DotNetDynamos
                     case 7:
                         LogOut();
                         break;
-
                     default:
                         Console.WriteLine("Wrong input, try again.");
                         break;
