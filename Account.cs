@@ -65,13 +65,13 @@ namespace DotNetDynamos
                 Console.WriteLine("User has no bank accounts.");
             }
         }
-        public static int GenerateAccountNumber(int userID)
+        public static int GenerateAccountNumber(AllUsers loggedInCustomer)
         {
             Random random = new Random();
             int randomPart = random.Next(1000, 9999); // Generate a random 4-digit number
 
             // Combine the user ID with the random number to create a unique account number
-            string accountNumberStr = userID.ToString() + randomPart.ToString();
+            string accountNumberStr = loggedInCustomer._IDnumber.ToString() + randomPart.ToString();
 
             // Convert the combined string to an integer account number
             int accountNumber;

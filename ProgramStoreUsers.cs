@@ -10,8 +10,6 @@ namespace DotNetDynamos
     {
         static void StoreUsers(string[] args)
         {
-
-
             Customer user1 = new Customer
             (
                 "User1",
@@ -54,8 +52,7 @@ namespace DotNetDynamos
                 "1998-01-01",
                  new List<Account>
                 {
-                    new Account(50034456, "MainAccount", "SEK", 1234),
-                    new Account(50016789, "SavingAccount", "EURO", 1234)
+                    
                 }
             );
 

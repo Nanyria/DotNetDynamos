@@ -21,7 +21,7 @@ namespace DotNetDynamos
             List<Account> accounts = Account.userAccounts[(Customer)loggedInCustomer];
             while (true)
             {
-                int transferFrom = GetValidInt();
+                int transferFrom = GetValidIntOrGoToMenu();
                 if (userAccounts.ContainsKey(id))       // wondering to create method to check if the key in the dictionary.
                 {
                     accounts = userAccounts[id];
@@ -50,7 +50,7 @@ namespace DotNetDynamos
 
 
                     Console.WriteLine("Which account do you want to transfer to?");
-                    int transferTo = GetValidInnt();
+                    int transferTo = GetValidInt();
                     targetAccount = accounts.Find(e => e._accountNumber == transferFrom);
 
                     Console.WriteLine("How much money do you want to transfer?");
@@ -78,27 +78,7 @@ namespace DotNetDynamos
             }
         }
 
-        static int GetValidInnt()
-        {
-            while (true)
-            {
-                int number;
-                while (true)
-                {
-                    if (int.TryParse(Console.ReadLine(), out number))
-                    {
-                        
-                        return number;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid input. Please enter an integer.");
-                    }
-                }
-            }
-        }
-     
-        static int GetValidInt() // This goes back to meny if the user pressed enter.
+        static int GetValidIntOrGoToMenu() // This goes back to meny if the user pressed enter.
         {
             Customer cus = null;
             string input = Console.ReadLine();
@@ -118,23 +98,39 @@ namespace DotNetDynamos
                 }
             }
         }
-        static decimal GetValidDecimal()
+        public static int GetValidInt()
         {
-            
+            int choice;
             while (true)
             {
-                decimal money;
-                if (decimal.TryParse(Console.ReadLine(), out money))
-                {
-                    return money;
-                }
-                else
-                {
+                if (!int.TryParse(Console.ReadLine(), out choice))
                     Console.WriteLine("Invalid input. Please enter an integer.");
-                }
+                else
+                    return choice;
             }
         }
-
+        public static string GetValidString()
+        {
+            string value = String.Empty;
+            while (String.IsNullOrEmpty(value))
+            {
+                value = Console.ReadLine();
+                if (String.IsNullOrEmpty(value))
+                    Console.WriteLine("Please insert");
+            }
+            return value;
+        }
+        public static decimal GetValidDecimal()
+        {
+            decimal money;
+            while (true)
+            {
+                if (!decimal.TryParse(Console.ReadLine(), out money))
+                    Console.WriteLine("Invalid input. Please enter an integer.");
+                else
+                    return money;
+            }
+        }
         static void TransferToOthers()
         {
 
