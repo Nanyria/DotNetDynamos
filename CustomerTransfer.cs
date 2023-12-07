@@ -9,7 +9,7 @@ namespace DotNetDynamos
 {
     internal partial class Customer : AllUsers
     {
-        static void Transfer(AllUsers loggedInCustomer, Dictionary<int, List<Account>> userAccounts, int id)
+        static void Transfer(AllUsers loggedInCustomer)
         {
             // List<Account> = int AccountNumber, decimal Balance
             Console.WriteLine("Here are your accounts: ");
@@ -22,9 +22,8 @@ namespace DotNetDynamos
             while (true)
             {
                 int transferFrom = GetValidIntOrGoToMenu();
-                if (userAccounts.ContainsKey(id))       // wondering to create method to check if the key in the dictionary.
+                if (accounts != null && accounts.Count > 0)       
                 {
-                    accounts = userAccounts[id];
                     sourceAccount = accounts.Find(e => e._accountNumber == transferFrom);
                     Console.WriteLine("You want to transfer money from account {0}", transferFrom + ", correct?");
                     Console.WriteLine("[1]. Yes.");
@@ -33,7 +32,18 @@ namespace DotNetDynamos
                     {
                         if (confirm == 1)
                         {
-                            
+                            Console.WriteLine("Which account do you want to transfer to?");
+                            int transferTo = GetValidInt();
+                            targetAccount = accounts.Find(e => e._accountNumber == transferTo);
+                            Console.WriteLine("How much money do you want to transfer?");
+                            double money = Convert.ToDouble(Console.ReadLine());
+                            if (money < 0 || money > sourceAccount._balance)
+                            {
+                                Console.WriteLine("Invalid transfer amount.");
+                                return;
+                            }
+                            sourceAccount._balance -= money;
+                            targetAccount._balance += money;
                         }
                         else
                         {
@@ -49,19 +59,11 @@ namespace DotNetDynamos
 
 
 
-                    Console.WriteLine("Which account do you want to transfer to?");
-                    int transferTo = GetValidInt();
-                    targetAccount = accounts.Find(e => e._accountNumber == transferFrom);
+                    //Console.WriteLine("Which account do you want to transfer to?");
+                    ////int transferTo = GetValidInt();
+                    //targetAccount = accounts.Find(e => e._accountNumber == transferFrom);
 
-                    Console.WriteLine("How much money do you want to transfer?");
-                    decimal money = GetValidDecimal();
-                    if (money < 0 || money > sourceAccount._balance)
-                    {
-                        Console.WriteLine("Invalid transfer amount.");
-                        return;
-                    }
-                    sourceAccount.Balance -= money;
-                    targetAccount.Balance += money;
+                    
                 }
                 else
                 {

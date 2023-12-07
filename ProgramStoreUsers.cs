@@ -37,7 +37,7 @@ namespace DotNetDynamos
                  new List<Account>
                 {
                     new Account(50028977, "MainAccount", "SEK", 1234),
-                    new Account(50011265, "SavingAccount", "EURO", 1234)
+                    new Account(50011265, "SavingAccount", "EUR", 1234)
                 }
             );
 
