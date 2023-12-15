@@ -40,7 +40,7 @@ namespace DotNetDynamos
 
             _IDnumber = nextCuID++;
 
-            Customer newCustomer = new Customer(_username, _IDnumber, _firstname, _lastname, Password, email, birthday); //Lägg till detta i Add metoden sen
+            Customer newCustomer = new Customer(_username, _IDnumber, _firstname, _lastname, Password, email, birthday, _accounts); //Lägg till detta i Add metoden sen
 
             CustomerUsers.Add(_username, newCustomer);
 

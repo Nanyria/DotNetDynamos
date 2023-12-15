@@ -12,17 +12,24 @@ namespace DotNetDynamos
         public int _accountNumber { get; set; }
         public string _accountName { get; set; }
         public string _currency { get; set; }
-        public double _balance { get; set; } //Decimal eller double? Sätt decimal - mer noggrann, kan använda fler nollor, sen avrunda till 2 dec 
+        public decimal _balance { get; set; } //Decimal eller double? Sätt decimal - mer noggrann, kan använda fler nollor, sen avrunda till 2 dec 
 
-        public Account(int Accountnumber, string Accountname, string Currency, double Balance)
+        public Account(int Accountnumber, string Accountname, string Currency, decimal Balance)
         {
             _accountNumber = Accountnumber;
             _accountName = Accountname;
             _currency = Currency;
             _balance = Balance;
         }
+        /// <summary>
+        /// Tror det är bättre om vi fixar felmeddelande i CreateAcc ist då vi inte behöver konstruktor i längden /N
+        /// </summary>
+        //public Account() : this(00, "No name provided", "No currency provided", 00)
+        //{
+        //}
         // Dictionary to hold user accounts (mapping user ID to bank accounts)
         private static Dictionary<Customer, List<Account>> userAccounts = new Dictionary<Customer, List<Account>>();  // userID, List<Account>
+
 
 
         static Customer customer = new Customer();
@@ -60,7 +67,7 @@ namespace DotNetDynamos
         //}
         /// </summary>
         /// <param name="loggedInCustomer"></param>
-        public static void AddBankAccount(AllUsers loggedInCustomer) //Add new acc
+        public static void AddBankAccount(AllUsers loggedInCustomer) //Add new acc, metametod, ska inte känna av specifik användare /N
         {
             if (!userAccounts.ContainsKey(userID))
             {
@@ -79,7 +86,7 @@ namespace DotNetDynamos
                 Console.WriteLine($"Bank Accounts for User ID: {loggedInCustomer}");
                 foreach (List<Account> account in userAccounts.Values)
                 {
-                    Console.WriteLine($"Account Number: {account.AccountNumber}, Balance: {account.Balance}");
+                    Console.WriteLine($"Account Number: {loggedInCustomer.}, Balance: {account.Balance}");
                 }
             }
             else

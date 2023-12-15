@@ -21,6 +21,7 @@ namespace DotNetDynamos
                 "Password1!",
                 "Johan@Johansson.se",
                 "1978-01-01"
+                //List <Account>
             );
 
             Customer user2 = new Customer
